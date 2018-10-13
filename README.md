@@ -12,7 +12,7 @@ Note: The following instructions are for Mac/Linux. If you have a windows machin
 
 3.  Install NodeJS by running 'brew install node'
 
-4.  Install MongoDB by running 'brew install mongo'
+4.  Install MongoDB by running 'brew install mongodb'
 
 5.  In your terminal, run 'cd ~' to return to the root.
 
