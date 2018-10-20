@@ -2,6 +2,8 @@
 
 Hi there! You found the repository containing the code for the facilitator form, nice!
 
+Changed ReadME
+
 Let's go ahead and try to get this running on your machine.
 
 Note: The following instructions are for Mac/Linux. If you have a windows machine you'll have to do some googling to get this off the ground. If you get stuck at any point DM me (Michael) on slack.
