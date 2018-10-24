@@ -1,21 +1,274 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-  </head>
-  <body>
-  </body>
+
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+
+<style>
+  .body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+  .h3,
+  h3 {
+    font-size: 50px;
+    background-color: azure;
+  }
+
+  .open-buttonF {
+    background-color: rgb(106, 163, 234);
+    color: white;
+    padding: 100px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 550px;
+    width: 400px;
+  }
+
+  .open-buttonA {
+    background-color: rgb(130, 92, 190);
+    color: white;
+    padding: 100px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 300px;
+    right: 550px;
+    width: 400px;
+  }
+
+  /* The popup form - hidden by default */
+
+  .form-popupA {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
+  .form-popupF {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
+  /* Add styles to the form container */
+
+  .form-containerA {
+    max-width: 900px;
+    padding: 40px;
+    background-color: white;
+    margin-bottom: 150px;
+  }
+
+  /* Full-width input fields */
+
+  .form-containerA input[type=text],
+  .form-containerA input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  /* When the inputs get focus, do something */
+
+  .form-containerA input[type=text]:focus,
+  .form-containerA input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  /* Set a style for the submit/login button */
+
+  .form-containerA .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  /* Add a red background color to the cancel button */
+
+  .form-containerA .cancel {
+    background-color: rgb(183, 0, 255);
+  }
+
+  /* Add some hover effects to buttons */
+
+  .form-containerA .btn:hover,
+  .open-button:hover {
+    opacity: 1;
+
+  }
+
+  .form-containerF {
+    max-width: 900px;
+    padding: 40px;
+    background-color: white;
+  }
+
+  /* Full-width input fields */
+
+  .form-containerF input[type=text],
+  .form-containerF input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  /* When the inputs get focus, do something */
+
+  .form-containerF input[type=text]:focus,
+  .form-containerF input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  /* Set a style for the submit/login button */
+
+  .form-containerF .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  /* Add a red background color to the cancel button */
+
+  .form-containerF .cancel {
+    background-color: rgb(183, 0, 255);
+  }
+
+  /* Add some hover effects to buttons */
+
+  .form-containerF .btn:hover,
+  .open-button:hover {
+    opacity: 1;
+
+  }
+</style>
+</head>
+
+<body>
   <script src="http://code.jquery.com/jquery.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 </html>
 
 <!-- HTML guides are all over the internet, to build this out I suggest just googling
 what you're trying to accomplish online as you go!! -->
 
 <div class="container">
-  <h3> A pretty simple homepage </h3>
-  <p> <a href="./form"> A form </a></p>
+  <h3> HOMEPAGE TESTING </h3>
+  <p>SOME DISCRIPTION...</p>
+
+
+  <body>
+
+    <button class="open-buttonF" onclick="openFormF()">Click Here If You Are A Faciliator</button>
+
+    <div class="form-popupF" id="myFormF">
+      <form action="/action_page.php" class="form-containerF">
+        <h1>Login as a Facilitator</h1>
+
+        <label for="email">
+          <b>Username</b>
+        </label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw">
+          <b>Password</b>
+        </label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit" class="btn">Login as a Faciliator</button>
+        <button type="button" class="btn cancel" onclick="closeFormF()">Close</button>
+      </form>
+    </div>
+
+    <script>
+      function openFormF() {
+        document.getElementById("myFormF").style.display = "block";
+      }
+
+      function closeFormF() {
+        document.getElementById("myFormF").style.display = "none";
+      }
+    </script>
+
+  </body>
+
+  <body>
+
+    <button class="open-buttonA" onclick="openFormA()">Click Here If You Are An Administrator</button>
+
+    <div class="form-popupA" id="myFormA">
+      <form action="/action_page.php" class="form-containerA">
+        <h1>Login as an Administrator</h1>
+
+        <label for="email">
+          <b>Username</b>
+        </label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw">
+          <b>Password</b>
+        </label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit" class="btn">Login as an Administrator</button>
+        <button type="button" class="btn cancel" onclick="closeFormA()">Close</button>
+      </form>
+    </div>
+
+    <script>
+      function openFormA() {
+        document.getElementById("myFormA").style.display = "block";
+      }
+
+      function closeFormA() {
+        document.getElementById("myFormA").style.display = "none";
+      }
+    </script>
+
+  </body>
+
+
+
+
+  </p>
+
+
+
+  <a href="./form"> </a>
+
+  <a href="./form"> A form </a>
+  </p>
 </div>
