@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 300px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 300px;
+}
+</style>
+</head>
+<body>
+
+
+<!--- Create Facilitators List Tabs --->
+<h2>Facilitators List</h2>
+
+<div class="tab">
+  <button class="tablinks" onclick="facilitator(event, 'Facilitator1')" id="defaultOpen">Facilitator 1</button>
+  <button class="tablinks" onclick="facilitator(event, 'Facilitator2')">Facilitator 2</button>
+  <button class="tablinks" onclick="facilitator(event, 'Facilitator3')">Facilitator 3</button>
+</div>
+
+<div id="Facilitator1" class="tabcontent">
+  <h3>Facilitator 1</h3>
+  <p>Country:</p>
+  <p>Join date:</p>
+  <p>Position:</p>
+  <p>Work experience:</p>
+</div>
+
+<div id="Facilitator2" class="tabcontent">
+  <h3>Facilitator 2</h3>
+  <p>Country:</p>
+  <p>Join date:</p>
+  <p>Position:</p>
+  <p>Work experience:</p>
+</div>
+
+<div id="Facilitator3" class="tabcontent">
+  <h3>Facilitator 3</h3>
+  <p>Country:</p>
+  <p>Join date:</p>
+  <p>Position:</p>
+  <p>Work experience:</p>
+</div>
+
+
+<script>
+function facilitator(evt, facilitatorName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(facilitatorName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+     
+</body>
+</html> 
+
+
+
+<!--- When "Add Facilitator" clicked --->
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Add Facilitator</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <!--- Add header --->
+    <header> 
+      <h1 style="text-align:center;color:purple;font-size:18:verdana;">Add Facilitator Information</h1>
+
+    <div class="container">
+  <form action="action_page.php">
+  
+    <!--- Get first name --->
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">First Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="firstname" placeholder="">
+      </div>
+    </div>
+    
+    <!--- Get last name --->
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Last Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="lname" name="lastname" placeholder="">
+      </div>
+    </div>
+    
+    <!--- Choose country --->
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Country</label>
+      </div>
+      <div class="col-75">
+        <select id="country" name="country">
+          <option value="usa">USA</option>
+          <option value="canada">Canada</option>
+          <option value="uk">United Kingdom</option>
+        </select>
+      </div>
+    </div>
+    
+    <!--- Select join date --->
+    <div>
+        <label for="start">Join date:</label>
+        <input type="date" id="start" name="work"
+               value="0000-00-00"/>
+    </div>
+    
+    <!--- Select position --->
+    <div class="row">
+      <div class="col-25">
+        <label for="position">Position</label>
+      </div>
+      <div class="col-75">
+        <select id="position" name="position">
+          <option value="seniorFacilitator">Senior Facilitator</option>
+        </select>
+      </div>
+    </div>
+    
+    <!--- Enter work experience --->
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Work experience:</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </form>
+</div>
+    <button type="button">Submit</button>
+  </div>
+
+</div>
+
+
+
+<head>
+  <style type="text/css">
+      /* --- When "Add Facilitator" clicked --- */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+  </style>
+</head>
+
+
+
+
+<script language="JavaScript">
+
+/* --- When "Add Facilitator" clicked --- */
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
