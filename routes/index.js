@@ -42,6 +42,15 @@ router.post("/createAccount", function(req, res) {
   res.redirect("/");
 });
 
+//For Cici's code
+router.get("/administratorPage_v1", function(req, res) {
+  res.render("administratorPage_v1");
+});
+
+router.get("/administratorPage_v2", function(req, res) {
+  res.render("administratorPage_v2");
+});
+
 //This is just a sanity check to make sure things work
 router.get("/ping", function(req, res) {
   res.status(200).send("pong!");
