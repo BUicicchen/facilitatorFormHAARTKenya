@@ -2,273 +2,159 @@
 <html>
 
 <head>
-  <title></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: "Roboto", sans-serif;
+      font-weight: normal;
+      color: rgba(53, 53, 53, 0.87);
+    }
+
+    .tap-target {
+      color: #fff;
+      a {
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+
+    .modal {
+      max-height: 90%;
+    }
+
+    .modal-form-row {
+      margin-bottom: 0px;
+    }
+
+    .btn,
+    .btn-large,
+    .btn-flat {
+      border: none;
+      border-radius: 2px;
+      display: inline-block;
+      height: 127px !important;
+      line-height: 36px;
+      outline: 0;
+      padding: 0 2rem;
+      text-transform: uppercase;
+      vertical-align: middle;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+
+  <title>HAARTKenya Home</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </script>
 
 
-<style>
-  .body {
-    font-family: Arial, Helvetica, sans-serif;
-  }
+
+  <div class="card-panel teal lighten-2">
+    <h3>HAARTKenya Landing Page</h3>
+  </div>
+  <!-- Element Showed -->
+  <a id="menu" class="waves-effect waves-light btn btn-floating">
+    <i class="material-icons">menu</i>
+  </a>
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target" data-target="menu">
+    <div class="tap-target-content">
+      <h5>Title</h5>
+      <p>A bunch of text</p>
+    </div>
+  </div>
 
 
-  .h3,
-  h3 {
-    font-size: 50px;
-    background-color: azure;
-  }
+  <!-- Modal Trigger -->
+  <button class="waves-effect waves-light btn modal-trigger" data-target="modal1">Click Here If You Are an Administrator</button>
 
-  .open-buttonF {
-    background-color: rgb(106, 163, 234);
-    color: white;
-    padding: 100px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 23px;
-    right: 550px;
-    width: 400px;
-  }
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Login as an Administrator</h4>
 
-  .open-buttonA {
-    background-color: rgb(130, 92, 190);
-    color: white;
-    padding: 100px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 300px;
-    right: 550px;
-    width: 400px;
-  }
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="image_title" type="text" class="validate">
+              <label for="image_title">Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>
+  </div>
 
-  /* The popup form - hidden by default */
+  <!-- Modal Trigger -->
+  <button class="waves-effect waves-light btn modal-trigger" data-target="modal2">Click Here If You Are A Facilitator</button>
 
-  .form-popupA {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-  }
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>Login as a Facilitator</h4>
 
-  .form-popupF {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-  }
 
-  /* Add styles to the form container */
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <form class="col s12">
+              <div class="row modal-form-row">
+                <div class="input-field col s12">
+                  <input id="image_url" type="text" class="validate">
+                  <label for="image_url">Password</label>
+                </div>
+              </div>
 
-  .form-containerA {
-    max-width: 900px;
-    padding: 40px;
-    background-color: white;
-    margin-bottom: 150px;
-  }
 
-  /* Full-width input fields */
+            </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      </div>
+    </div>
 
-  .form-containerA input[type=text],
-  .form-containerA input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-  }
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    </body>
 
-  /* When the inputs get focus, do something */
 
-  .form-containerA input[type=text]:focus,
-  .form-containerA input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
+    <script language="JavaScript">document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var options = {};
+        var instances = M.TapTarget.init(elems, options);
 
-  /* Set a style for the submit/login button */
+      });
 
-  .form-containerA .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
-  }
 
-  /* Add a red background color to the cancel button */
+      $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+        $('.tap-target').tapTarget();
 
-  .form-containerA .cancel {
-    background-color: rgb(183, 0, 255);
-  }
+      });
 
-  /* Add some hover effects to buttons */
-
-  .form-containerA .btn:hover,
-  .open-button:hover {
-    opacity: 1;
-
-  }
-
-  .form-containerF {
-    max-width: 900px;
-    padding: 40px;
-    background-color: white;
-  }
-
-  /* Full-width input fields */
-
-  .form-containerF input[type=text],
-  .form-containerF input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-  }
-
-  /* When the inputs get focus, do something */
-
-  .form-containerF input[type=text]:focus,
-  .form-containerF input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
-
-  /* Set a style for the submit/login button */
-
-  .form-containerF .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
-  }
-
-  /* Add a red background color to the cancel button */
-
-  .form-containerF .cancel {
-    background-color: rgb(183, 0, 255);
-  }
-
-  /* Add some hover effects to buttons */
-
-  .form-containerF .btn:hover,
-  .open-button:hover {
-    opacity: 1;
-
-  }
-</style>
-</head>
-
-<body>
-  <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    </script>
 
 </html>
-
-<!-- HTML guides are all over the internet, to build this out I suggest just googling
-what you're trying to accomplish online as you go!! -->
-
-<div class="container">
-  <h3> HOMEPAGE TESTING </h3>
-  <p>SOME DISCRIPTION...</p>
-
-
-  <body>
-
-    <button class="open-buttonF" onclick="openFormF()">Click Here If You Are A Faciliator</button>
-
-    <div class="form-popupF" id="myFormF">
-      <form action="/action_page.php" class="form-containerF">
-        <h1>Login as a Facilitator</h1>
-
-        <label for="email">
-          <b>Username</b>
-        </label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-
-        <label for="psw">
-          <b>Password</b>
-        </label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <button type="submit" class="btn">Login as a Faciliator</button>
-        <button type="button" class="btn cancel" onclick="closeFormF()">Close</button>
-      </form>
-    </div>
-
-    <script>
-      function openFormF() {
-        document.getElementById("myFormF").style.display = "block";
-      }
-
-      function closeFormF() {
-        document.getElementById("myFormF").style.display = "none";
-      }
-    </script>
-
-  </body>
-
-  <body>
-
-    <button class="open-buttonA" onclick="openFormA()">Click Here If You Are An Administrator</button>
-
-    <div class="form-popupA" id="myFormA">
-      <form action="/action_page.php" class="form-containerA">
-        <h1>Login as an Administrator</h1>
-
-        <label for="email">
-          <b>Username</b>
-        </label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-
-        <label for="psw">
-          <b>Password</b>
-        </label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <button type="submit" class="btn">Login as an Administrator</button>
-        <button type="button" class="btn cancel" onclick="closeFormA()">Close</button>
-      </form>
-    </div>
-
-    <script>
-      function openFormA() {
-        document.getElementById("myFormA").style.display = "block";
-      }
-
-      function closeFormA() {
-        document.getElementById("myFormA").style.display = "none";
-      }
-    </script>
-
-  </body>
-
-
-
-
-  </p>
-
-
-
-  <a href="./form"> </a>
-
-  <a href="./form"> A form </a>
-  </p>
-</div>
