@@ -11,13 +11,6 @@
       color: rgba(53, 53, 53, 0.87);
     }
 
-    .tap-target {
-      color: #fff;
-      a {
-        color: #fff;
-        text-decoration: underline;
-      }
-    }
 
     .modal {
       max-height: 90%;
@@ -33,10 +26,10 @@
       border: none;
       border-radius: 2px;
       display: inline-block;
-      height: 127px !important;
+      height: 400px !important;
       line-height: 36px;
       outline: 0;
-      padding: 0 2rem;
+      padding: 0 9rem !important;
       text-transform: uppercase;
       vertical-align: middle;
       -webkit-tap-highlight-color: transparent;
@@ -46,9 +39,9 @@
   <title>HAARTKenya Home</title>
   <meta name="viewport" content="width = device-width, initial-scale = 1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js">
   </script>
 
 
@@ -56,18 +49,7 @@
   <div class="card-panel teal lighten-2">
     <h3>HAARTKenya Landing Page</h3>
   </div>
-  <!-- Element Showed -->
-  <a id="menu" class="waves-effect waves-light btn btn-floating">
-    <i class="material-icons">menu</i>
-  </a>
 
-  <!-- Tap Target Structure -->
-  <div class="tap-target" data-target="menu">
-    <div class="tap-target-content">
-      <h5>Title</h5>
-      <p>A bunch of text</p>
-    </div>
-  </div>
 
 
   <!-- Modal Trigger -->
@@ -142,16 +124,13 @@
 
     <script language="JavaScript">document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.modal');
-        var options = {};
-        var instances = M.TapTarget.init(elems, options);
-
+        var instances = M.Modal.init(elems, options);
       });
 
 
       $(document).ready(function () {
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal-trigger').leanModal();
-        $('.tap-target').tapTarget();
 
       });
 
