@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>Starter Template - Materialize</title>
+      <!-- CSS  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   </head>
+
+   <body>
+      <nav>
+          <div class="nav-wrapper">
+              <nav class="grey">
+            <a href="#" class="brand-logo right"><img class="responsive-img" src="HAART-logo.png"></a>
+          </div>
+        </nav>
+
+      <div class="section no-pad-bot" id="index-banner">
+         <div class="container">
+            <!-- Page Content goes here -->
+            <div class="row">
+               <label for="workshopdate" class="">Workshop date</label>
+               <input type="date" class="datepicker">
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Worskop Venue" id="workshop_venue" type="text" class="validate">
+                  <label for="workshop_venue">Workshop Venue</label>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select workshop type</label>
+               <div class="input-field col s12">
+                  <select class="browser-default">
+                     <option value="" disabled selected></option>
+                     <option value="1">Grassroots</option>
+                     <option value="2">Child trafficking</option>
+                     <option value="3">First responder</option>
+                     <option value="3">Safe migration</option>
+                     <option value="3">Young@HAART</option>
+                  </select>
+                  <label>  Type of worskop</label>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select Town</label>
+               <div class="input-field col s12">
+                  <select class="browser-default">
+                     <option value="" disabled selected></option>
+                     <option value="1">Choice 1</option>
+                     <option value="2">Choice 2</option>
+                  </select>
+                  <label>  Town</label>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select County</label>
+               <div class="input-field col s12">
+                  <select class="browser-default">
+                     <option value="" disabled selected></option>
+                     <option value="1">Choice 1</option>
+                     <option value="2">Choice 2</option>
+                  </select>
+                  <label>  County</label>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select County</label>
+               <div class="input-field col s12">
+                  <select class="browser-default">
+                     <option value="" disabled selected></option>
+                     <option value="1">Below 18</option>
+                     <option value="2">18-35</option>
+                     <option value="2">36-55</option>
+                     <option value="2">56+</option>
+                  </select>
+                  <label> Target group</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Female participants" id="female_participants" type="text" class="validate">
+                  <label for="female_participants">Number of female participants</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Male participants" id="male_participants" type="text" class="validate">
+                  <label for="male_participants">Number of male participants</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Types of exploitation" id="exploitation_types" type="text" class="validate">
+                  <label for="exploitation_types">Types of exploitation</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Types of exploitation" id="exploitation_types" type="text" class="validate">
+                  <label for="exploitation_types">Types of exploitation</label>
+               </div>
+            </div>
+         <div class="row">
+            <div class="input-field">
+               <input placeholder="Types of trafficking" id="trafficking_types" type="text" class="validate">
+               <label for="trafficking_types">Types of trafficking </label>
+            </div>
+         </div>
+         </div>
+         <!-- Footer -->
+         <footer class="page-footer red">
+            <div class="container">
+               <div class="container">
+                  Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Hack4Impact at Boston University</a>
+               </div>
+            </div>
+         </footer>
+         <!--  Scripts-->
+         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+         <script src="js/materialize.js"></script>
+         <script src="js/init.js"></script>
+         <!-- Script for drop down -->
+         <script langauge="JavaScript">
+            document.addEventListener('DOMContentLoaded', function() {
+             var elems = document.querySelectorAll('select');
+             var instances = M.FormSelect.init(elems, options);
+            });
+            $(document).ready(function(){
+             $('select').formSelect();
+            });
+         </script>
+      </div>
+   </body>
+</html>
