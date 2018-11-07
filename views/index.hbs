@@ -1,252 +1,240 @@
-   
-      <title>The Materialize Example</title>
-      <meta name="viewport" content="width = device-width, initial-scale = 1">      
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-      </script>             
-   
-   
-<div class="card-panel grey lighten-1">
-<h5>Welcome Back Administrator!</h5>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
 
 
-<!-- Facilitator List -->
-<ul class="collection">
-<li class="collection-item">Facilitator 1
-    <!-- Modal Trigger To View Profile -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Click To See Profile</a>
+<style>
+  .body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .h3,
+  h3 {
+    font-size: 50px;
+    background-color: azure;
+  }
+  .open-buttonF {
+    background-color: rgb(106, 163, 234);
+    color: white;
+    padding: 100px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 550px;
+    width: 400px;
+  }
+  .open-buttonA {
+    background-color: rgb(130, 92, 190);
+    color: white;
+    padding: 100px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 300px;
+    right: 550px;
+    width: 400px;
+  }
+  /* The popup form - hidden by default */
+  .form-popupA {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+  .form-popupF {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+  /* Add styles to the form container */
+  .form-containerA {
+    max-width: 900px;
+    padding: 40px;
+    background-color: white;
+    margin-bottom: 150px;
+  }
+  /* Full-width input fields */
+  .form-containerA input[type=text],
+  .form-containerA input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  /* When the inputs get focus, do something */
+  .form-containerA input[type=text]:focus,
+  .form-containerA input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  /* Set a style for the submit/login button */
+  .form-containerA .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+  /* Add a red background color to the cancel button */
+  .form-containerA .cancel {
+    background-color: rgb(183, 0, 255);
+  }
+  /* Add some hover effects to buttons */
+  .form-containerA .btn:hover,
+  .open-button:hover {
+    opacity: 1;
+  }
+  .form-containerF {
+    max-width: 900px;
+    padding: 40px;
+    background-color: white;
+  }
+  /* Full-width input fields */
+  .form-containerF input[type=text],
+  .form-containerF input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  /* When the inputs get focus, do something */
+  .form-containerF input[type=text]:focus,
+  .form-containerF input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  /* Set a style for the submit/login button */
+  .form-containerF .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+  /* Add a red background color to the cancel button */
+  .form-containerF .cancel {
+    background-color: rgb(183, 0, 255);
+  }
+  /* Add some hover effects to buttons */
+  .form-containerF .btn:hover,
+  .open-button:hover {
+    opacity: 1;
+  }
+</style>
+</head>
 
-    <!-- Modal Structure View Profile -->
-    <div id="modal2" class="modal">
-      <div class="modal-content">
-        <h4>Facilitator 1</h4>
-        <p>Last Logged In:</p>
-        <p>Log In Times:</p>
-        <p>Country:</p>
-        <p>Join Date:</p>
-        <p>Position:</p>
-        <p>Work Experience:</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
+<body>
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+</html>
+
+<!-- HTML guides are all over the internet, to build this out I suggest just googling
+what you're trying to accomplish online as you go!! -->
+
+<div class="container">
+  <h3> HOMEPAGE TESTING </h3>
+  <p>SOME DISCRIPTION...</p>
+
+
+  <body>
+
+    <button class="open-buttonF" onclick="openFormF()">Click Here If You Are A Faciliator</button>
+
+    <div class="form-popupF" id="myFormF">
+      <form action="/action_page.php" class="form-containerF">
+        <h1>Login as a Facilitator</h1>
+
+        <label for="email">
+          <b>Username</b>
+        </label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw">
+          <b>Password</b>
+        </label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit" class="btn">Login as a Faciliator</button>
+        <button type="button" class="btn cancel" onclick="closeFormF()">Close</button>
+      </form>
     </div>
 
+    <script>
+      function openFormF() {
+        document.getElementById("myFormF").style.display = "block";
+      }
+      function closeFormF() {
+        document.getElementById("myFormF").style.display = "none";
+      }
+    </script>
 
-    <!-- Modal Trigger To Edit -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Edit</a>
-      
-      <!-- Modal Structure Edit Country -->
-      <div id="modal5" class="modal">
-          <div class="modal-content">
-            <select class="browser-default">
-            <option value="" disabled="" selected="">Select Country</option>
-            <option value="1">United States</option>
-            <option value="2">United Kingdom</option>
-            <option value="3">Kenya</option>
-        </select>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Enter</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-          </div>
-        </div>
+  </body>
 
-      <!-- Modal Structure Edit Join Date -->
-      <div id="modal6" class="modal">
-          <div class="modal-content">
-             <input id="join_date" type="text" class="datepicker">
-             <label for="join_date">Join Date</label>
-        </select>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Enter</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-          </div>
-        </div>
+  <body>
 
-      <!-- Modal Structure Edit Position -->
-      <div id="modal7" class="modal">
-          <div class="modal-content">
-            <select class="browser-default">
-              <option value="" disabled="" selected="">Select Position</option>
-              <option value="1">Senior Facilitator</option>
-              <option value="2">Intern Facilitator</option>
-        </select>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Enter</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-          </div>
-        </div>
+    <button class="open-buttonA" onclick="openFormA()">Click Here If You Are An Administrator</button>
 
-      <!-- Modal Structure Edit Work Experience -->
-      <div id="modal8" class="modal">
-          <div class="modal-content">
-                  <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Work Experience</label>
-                  </div>
-        </select>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Enter</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-          </div>
-        </div>
+    <div class="form-popupA" id="myFormA">
+      <form action="/action_page.php" class="form-containerA">
+        <h1>Login as an Administrator</h1>
 
+        <label for="email">
+          <b>Username</b>
+        </label>
+        <input type="text" placeholder="Enter Email" name="email" required>
 
+        <label for="psw">
+          <b>Password</b>
+        </label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <!-- Modal Structure Edit -->
-    <div id="modal3" class="modal">
-      <div class="modal-content">
-        <h4>Facilitator 1</h4>
-    
-            <!-- Modal Trigger To Edit Country -->
-            <button data-target="modal5" class="btn modal-trigger">Edit Country</button>
-
-            <!-- Modal Trigger To Edit Join Date -->
-            <p>
-            <button data-target="modal6" class="btn modal-trigger">Edit Join Date</button>
-            </p>
-        
-            <!-- Modal Trigger To Edit Position -->
-            <p>
-            <button data-target="modal7" class="btn modal-trigger">Edit Position</button>
-            </p>
-
-            <!-- Modal Trigger To Edit Work Experience -->
-            <p>
-            <button data-target="modal8" class="btn modal-trigger">Edit Work Experience</button>
-            </p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
+        <button type="submit" class="btn">Login as an Administrator</button>
+        <button type="button" class="btn cancel" onclick="closeFormA()">Close</button>
+      </form>
     </div>
 
-    <!-- Modal Trigger To Delete -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal4">Delete</a>
+    <script>
+      function openFormA() {
+        document.getElementById("myFormA").style.display = "block";
+      }
+      function closeFormA() {
+        document.getElementById("myFormA").style.display = "none";
+      }
+    </script>
 
-    <!-- Modal Structure View Profile -->
-    <div id="modal4" class="modal">
-      <div class="modal-content">
-        <h4>Facilitator 1</h4>
-        <p>Are you sure you want to delete user?</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Yes</a>
-      </div>
-    </div>
-
-</li>
-
-<li class="collection-item">Facilitator 2</li>
-<li class="collection-item">Facilitator 3</li>
-<li class="collection-item">Facilitator 4</li>
-</ul>
-
-  <!-- Add Facilitator Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add Facilitator</a>
-
-  <!-- Add Facilitator Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Add Facilitator Information</h4>
-
-            <!-- Facilitator First/Last Name -->
-            <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate">
-                  <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s7">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Last Name</label>
-                </div>
-            </div>
-              
-            <!-- Facilitator Join Date -->
-            <div class="row">
-             <div class="input-field col s7">
-             <input id="join_date" type="text" class="datepicker">
-             <label for="join_date">Join Date</label>
-            </div>
-
-            <!-- Facilitator Country -->
-            <select class="browser-default">
-                <option value="" disabled="" selected="">Select Country</option>
-                <option value="1">United States</option>
-                <option value="2">United Kingdom</option>
-                <option value="3">Kenya</option>
-            </select>
-            
-            <!-- Facilitator Position -->
-            <select class="browser-default">
-                <option value="" disabled="" selected="">Select Position</option>
-                <option value="1">Senior Facilitator</option>
-                <option value="2">Intern Facilitator</option>
-            </select>
-
-            <!-- Facilitator Work Experience -->
-            <div class="row">
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Work Experience</label>
-                  </div>
-                </div>
-              </form>
-            </div>
-              
-             
-          </div></form>
-      
-      
-      
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
-    </div>
-  </div>
-  
-  
-  </div>
+  </body>
 
 
 
 
-  <!-- Add Facilitator Modal Initialization -->
- <script language="JavaScript">
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
-  });
-  // Or with jQuery
-
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
-  });
-
-$('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
+  </p>
 
 
-  </script>  </div>
+
+  <a href="./form"> </a>
+
+  <a href="./form"> A form </a>
+  </p>
+</div>
