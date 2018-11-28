@@ -10,16 +10,18 @@
       <link href="/stylesheets.css" type="text/css" rel="stylesheet" media="screen,projection"/>
    </head>
 
-   <body>
+     <body>
       <nav>
-          <div class="nav-wrapper">
-              <nav class="grey">
-            <a href="#" class="brand-logo right"><img class="responsive-img" src="/HAART-logo.png"></a>
-          </div>
-        </nav>
-
+      <div class="nav-wrapper">
+         <nav class="grey">
+            <a href="#" class="brand-logo right"><img class="responsive-img" src="HAART-logo.png"></a>
+      </div>
+      </nav>
       <div class="section no-pad-bot" id="index-banner">
+
          <div class="container">
+            <div class= "col s12 m9 l10">
+
             <!-- Page Content goes here -->
             <div class="row">
                <label for="workshopdate" class="">Workshop date</label>
@@ -35,104 +37,192 @@
                <label>Please select workshop type</label>
                <div class="input-field col s12">
                   <select class="browser-default">
-                     <option value="" disabled selected></option>
+                     <option disabled="disabled" selected="selected">Workshop type</option>
                      <option value="1">Grassroots</option>
                      <option value="2">Child trafficking</option>
                      <option value="3">First responder</option>
-                     <option value="3">Safe migration</option>
-                     <option value="3">Young@HAART</option>
+                     <option value="4">Safe migration</option>
+                     <option value="5">Young@HAART</option>
                   </select>
-                  <label>  Type of worskop</label>
                </div>
             </div>
             <div class="row">
                <label>Please select Town</label>
                <div class="input-field col s12">
                   <select class="browser-default">
-                     <option value="" disabled selected></option>
+                     <option disabled="disabled" selected="selected">Town</option>
                      <option value="1">Choice 1</option>
                      <option value="2">Choice 2</option>
                   </select>
-                  <label>  Town</label>
                </div>
             </div>
             <div class="row">
                <label>Please select County</label>
                <div class="input-field col s12">
                   <select class="browser-default">
-                     <option value="" disabled selected></option>
+                     <option disabled="disabled" selected="selected">Country</option>
                      <option value="1">Choice 1</option>
                      <option value="2">Choice 2</option>
                   </select>
-                  <label>  County</label>
                </div>
             </div>
             <div class="row">
-               <label>Please select County</label>
+               <label>Please select target group</label>
                <div class="input-field col s12">
                   <select class="browser-default">
-                     <option value="" disabled selected></option>
+                     <option disabled="disabled" selected="selected">Target group</option>
                      <option value="1">Below 18</option>
                      <option value="2">18-35</option>
-                     <option value="2">36-55</option>
-                     <option value="2">56+</option>
+                     <option value="3">36-55</option>
+                     <option value="4">56+</option>
                   </select>
-                  <label> Target group</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Female participants" id="female_participants" type="text" class="validate">
+                  <input placeholder="Female participants:" id="female_participants" type="text" class="validate">
                   <label for="female_participants">Number of female participants</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Male participants" id="male_participants" type="text" class="validate">
+                  <input placeholder="Male participants:" id="male_participants" type="text" class="validate" >
                   <label for="male_participants">Number of male participants</label>
                </div>
             </div>
+            <!-- Calculate sum -->
+            <input type="number" id="result" readonly />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+               $(function () {
+                 $("#female_participants, #male_participants").keyup(function () {
+                   $("#result").val(+$("#female_participants").val() + +$("#male_participants").val());
+                 });
+               });
+                           
+                           
+                           
+            </script>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Types of exploitation" id="exploitation_types" type="text" class="validate">
+                  <input placeholder="Types of exploitation:" id="exploitation_types" type="text" class="validate">
                   <label for="exploitation_types">Types of exploitation</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Types of exploitation" id="exploitation_types" type="text" class="validate">
-                  <label for="exploitation_types">Types of exploitation</label>
+                  <input placeholder="Types of trafficking:" id="trafficking_types" type="text" class="validate">
+                  <label for="trafficking_types">Types of trafficking </label>
                </div>
             </div>
-         <div class="row">
-            <div class="input-field">
-               <input placeholder="Types of trafficking" id="trafficking_types" type="text" class="validate">
-               <label for="trafficking_types">Types of trafficking </label>
+         </div>
+            <div id="radio" class="section scrollspy">
+               <form action="#">
+                  <label>Is the area where you are primarily source or destination?</label>
+                  <p>
+                     <label>
+                     <input type="radio" />
+                     <span>Source</span>
+                     </label>
+                     <!-- <div class="reveal-if-active">
+                        Anything you want in here.
+                      </div> -->
+                  </p>
+                  <p>
+                     <label>
+                     <input type="radio" />
+                     <span>Destination</span>
+                     </label>
+                  </p>
+               <!-- </form>
+               <form name="BrowserSurvey" action="#">
+                  Browser: <select name="browser" onchange="if(this.options[this.selectedIndex].value=='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}">
+                    <option></option>
+                    <option value="customOption">[type a custom value]</option>
+                    <option>Chrome</option>
+                    <option>Firefox</option>
+                    <option>Internet Explorer</option>
+                    <option>Opera</option>
+                    <option>Safari</option></select><input name="browser" style="display:none;" disabled="disabled" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+                  <input type="submit" value="Submit">
+                  </form> -->
+                  <div class="row">
+                      <div class="input-field">
+                         <input placeholder="Who are the traffickers?" id="trafficker_types" type="text" class="validate">
+                         <label for="trafficking_types">Trafficker type:</label>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="input-field">
+                         <input placeholder="Who are the victims?" id="trafficking_types" type="text" class="validate">
+                         <label for="trafficking_types">Victim type: </label>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="input-field">
+                         <input placeholder="What is the biggest need in adressing human trafficking?" id="trafficking_types" type="text" class="validate">
+                         <label for="trafficking_types">Biggest need in adressing human trafficking: </label>
+                      </div>
+                   </div>
             </div>
          </div>
-         </div>
-         <!-- Footer -->
-         <footer class="page-footer red">
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+            </button>
+      </div>
+
+      </div>
+      <!-- Footer -->
+      <footer class="page-footer red">
+         <div class="container">
             <div class="container">
-               <div class="container">
-                  Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Hack4Impact at Boston University</a>
-               </div>
+               Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Hack4Impact at Boston University</a>
             </div>
-         </footer>
-         <!--  Scripts-->
-         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-         <script src="/js/materialize.js"></script>
-         <script src="/js/init.js"></script>
-         <!-- Script for drop down -->
-         <script langauge="JavaScript">
-            document.addEventListener('DOMContentLoaded', function() {
-             var elems = document.querySelectorAll('select');
-             var instances = M.FormSelect.init(elems, options);
-            });
-            $(document).ready(function(){
-             $('select').formSelect();
-            });
-         </script>
+         </div>
+      </footer>
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+      <!-- Script for drop down -->
+      <script langauge="JavaScript">
+         document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+         });
+         $(document).ready(function(){
+          $('select').formSelect();
+         });
+      </script>
+
+      <!-- Warn user from leaving form before submission -->
+      <script langauge="JavaScript">
+      // Enable navigation prompt
+      window.onbeforeunload = function() {
+      return true;  
+        };
+      // Remove navigation prompt
+      window.onbeforeunload = null;
+      </script>
+
+
+      <!-- [x] CSS for additional form fields [x] -->
+      <head>
+          <style>
+            .reveal-if-active {
+              opacity: 0;
+              max-height: 0;
+              overflow: hidden;
+            }
+            input[type="radio"]:checked ~ .reveal-if-active,
+            input[type="checkbox"]:checked ~ .reveal-if-active {
+            opacity: 1;
+            max-height: 100px; /* little bit of a magic number :( */
+            overflow: visible;
+            }
+
+
+    </style>
+</head>
       </div>
    </body>
 </html>
