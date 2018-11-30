@@ -1,0 +1,437 @@
+<!---Table for facilitators--->
+
+{{!--
+<style type="text/css">
+  table.tableizer-table {
+    font-size: 12px;
+    border: 1px solid #CCC;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .tableizer-table td {
+    padding: 4px;
+    margin: 3px;
+    border: 1px solid #CCC;
+  }
+
+  .tableizer-table th {
+    background-color: #104E8B;
+    color: #FFF;
+    font-weight: bold;
+  }
+</style> --}}
+<table class="tableizer-table">
+  <thead>
+    <tr class="tableizer-firstrow">
+      <th>Facilitator Name</th>
+      <th>Information</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>Facilitator 1</td>
+      <td>
+        <button id="seeProfile1">Click to see Profile</button>
+        <td>
+          <button id="edit1">Edit</button>
+          <button id="delete1">Delete</button>
+    </tr>
+
+    <tr>
+      <td>Facilitator 2</td>
+      <td>
+        <button id="seeProfile2">Click to see Profile</button>
+        <td>
+          <button id="button2">Edit</button>
+          <button id="delete2">Delete</button>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<!--- When "Add Facilitator" clicked --->
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Add Facilitator</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <header>
+      <h1 style="text-align:center;color:purple;font-family:verdana;">Facilitator Information</h1>
+
+      <div class="container">
+        <form action="action_page.php">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">First Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="fname" name="firstname" placeholder="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Last Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="lname" name="lastname" placeholder="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="country">Country</label>
+            </div>
+            <div class="col-75">
+              <select id="country" name="country">
+                <option value="usa">USA</option>
+                <option value="canada">Canada</option>
+                <option value="uk">United Kingdom</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="subject">Information</label>
+            </div>
+            <div class="col-75">
+              <textarea id="subject" name="subject" placeholder="" style="height:200px"></textarea>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+        </form>
+      </div>
+      <button type="button">Submit</button>
+  </div>
+
+</div>
+
+
+<head>
+  <style type="text/css">
+    /* --- When "Add Facilitator" clicked --- */
+
+    /* The Modal (background) */
+
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Style inputs, select elements and textareas */
+
+    input[type=text],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    /* Style the label to display next to the inputs */
+
+    label {
+      padding: 12px 12px 12px 0;
+      display: inline-block;
+    }
+
+    /* Style the submit button */
+
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+
+    /* Style the container */
+
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    /* Floating column for labels: 25% width */
+
+    .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
+
+    /* Floating column for inputs: 75% width */
+
+    .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+    @media screen and (max-width: 600px) {
+      .col-25,
+      .col-75,
+      input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+
+
+
+    /* --- When "Click to see Profile" clicked --- */
+
+    /* The Modal (background) */
+
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Style inputs, select elements and textareas */
+
+    input[type=text],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    /* Style the label to display next to the inputs */
+
+    label {
+      padding: 12px 12px 12px 0;
+      display: inline-block;
+    }
+
+    /* Style the submit button */
+
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+
+    /* Style the container */
+
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    /* Floating column for labels: 25% width */
+
+    .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
+
+    /* Floating column for inputs: 75% width */
+
+    .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+    @media screen and (max-width: 600px) {
+      .col-25,
+      .col-75,
+      input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+
+
+
+<script language="JavaScript">
+
+  /* --- When "Add Facilitator" clicked --- */
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal 
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+
+
+  /* --- When "Click to see Profile" clicked --- */
+  // Get the modal
+  var seeProfile1 = document.getElementById('seeProfile1');
+
+  // Get the button that opens the modal
+  var seeProfile1 = document.getElementById("seeProfile1");
+
+  // Get the <span> element that closes the modal
+  var closeProfile = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal 
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>

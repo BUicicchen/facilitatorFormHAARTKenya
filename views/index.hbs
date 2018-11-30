@@ -1,21 +1,150 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-  </head>
-  <body>
+
+<head>
+
+  <style>
+    .modal {
+      max-height: 90%;
+    }
+
+    .modal-form-row {
+      margin-bottom: 0px;
+    }
+
+
+    .btn,
+    .btn-large,
+    .btn-flat {
+      border: none;
+      border-radius: 2px;
+      display: inline-block;
+      height: 400px !important;
+      line-height: 36px;
+      font-size: 20px;
+      outline: 0;
+      padding: 1 9rem !important;
+      text-transform: uppercase;
+      vertical-align: middle;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+
+  <title>HAARTKenya Home</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js">
+  </script>
+</head>
+<body style="background-color: grey">
+
+  <nav>
+    <div class="nav-wrapper grey">
+      <a href="#" class="brand-logo">
+        <img class="cirlce responsive-img" src="/images/HAART-2.png" alt="it ain't here">
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+        <li>HAARTKenya Landing Page</li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1">Click Here If You Are an Administrator</button>
+      </div>
+      <div class="col s6 offset-6">
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal2">Click Here If You Are A Facilitator</button>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Login as an Administrator</h4>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="image_title" type="text" class="validate">
+              <label for="image_title">Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/administratorPage">Submit</a>
+    </div>
+  </div>
+
+  <!-- Modal Trigger -->
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>Login as a Facilitator</h4>
+
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <form class="col s12">
+              <div class="row modal-form-row">
+                <div class="input-field col s12">
+                  <input id="image_url" type="text" class="validate">
+                  <label for="image_url">Password</label>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   </body>
-  <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+  <script language="JavaScript">document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+
+
+    $(document).ready(function () {
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+
+    });
+
+  </script>
+
 </html>
-
-<!-- HTML guides are all over the internet, to build this out I suggest just googling
-what you're trying to accomplish online as you go!! -->
-
-<div class="container">
-  <h3> A pretty simple homepage </h3>
-  <p> <a href="./form"> A form </a></p>
-</div>

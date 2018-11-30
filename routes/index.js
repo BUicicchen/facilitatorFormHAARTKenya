@@ -1,6 +1,6 @@
 var express = require("express");
 var passport = require("passport");
-var Account = require("../models/account");
+var formSchema = require("../models/formschema");
 var router = express.Router();
 var multer = require("multer");
 
@@ -13,12 +13,48 @@ router.get("/", function(req, res) {
 
 router.get("/form", function(req, res) {
   //This is the route to load form
+
   res.render("form");
 });
 
 router.post("/form", function(req, res) {
   //A post request for the form actually collect the data and store it in Mongo
-  alert("Not done yet!");
+
+  var venue = req.body.element_2;
+  var workshop = req.body.element_10; //convert to name
+  var firstname = req.body.element_3_1;
+  var lastname = req.body.element_3_2;
+  var town = req.body.element_11;
+  var county = req.body.element_12;
+  var targetgroup = req.body.element_13;
+  var agegroup = req.body.element_14;
+  var fadults = req.body.element_4;
+  var madults = req.body.element_5;
+
+  var form = {
+    venue: venue,
+    workshop: workshop, //each category represented as a number
+    fname: firstname,
+    lname: lastname,
+    town: town,
+    county: county,
+    targetgroup: targetgroup,
+    agegroup: agegroup,
+    fadult: fadults,
+    madults: madults
+  };
+
+  // var totalparticipations =parseInt(fadults,10) + parseInt(madults,10)
+  //var newform = mongoose.model("entries", formSchema);
+
+  formSchema.create(form, function(err, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+  console.log("We've done the thing");
   res.redirect("/");
 });
 
@@ -40,6 +76,11 @@ router.post("/createAccount", function(req, res) {
   //your PM to discuss how to implement this.
   console.log("Not done yet!");
   res.redirect("/");
+});
+
+//For Cici's code
+router.get("/administratorPage", function(req, res) {
+  res.render("administratorPage");
 });
 
 //This is just a sanity check to make sure things work
