@@ -25,18 +25,18 @@
             <!-- Page Content goes here -->
             <div class="row">
                <label for="workshopdate" class="">Workshop date</label>
-               <input type="date" class="datepicker">
+               <input type="date" class="datepicker" required>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Worskop Venue" id="workshop_venue" type="text" class="validate">
+                  <input placeholder="Worskop Venue" id="workshop_venue" type="text" class="validate" required >
                   <label for="workshop_venue">Workshop Venue</label>
                </div>
             </div>
             <div class="row">
                <label>Please select workshop type</label>
                <div class="input-field col s12">
-                  <select class="browser-default">
+                  <select class="browser-default" required>
                      <option disabled="disabled" selected="selected">Workshop type</option>
                      <option value="1">Grassroots</option>
                      <option value="2">Child trafficking</option>
@@ -48,8 +48,8 @@
             </div>
             <div class="row">
                <label>Please select Town</label>
-               <div class="input-field col s12">
-                  <select class="browser-default">
+               <div class="input-field col s12" >
+                  <select class="browser-default" required>
                      <option disabled="disabled" selected="selected">Town</option>
                      <option value="1">Choice 1</option>
                      <option value="2">Choice 2</option>
@@ -59,7 +59,7 @@
             <div class="row">
                <label>Please select County</label>
                <div class="input-field col s12">
-                  <select class="browser-default">
+                  <select class="browser-default" required>
                      <option disabled="disabled" selected="selected">Country</option>
                      <option value="1">Choice 1</option>
                      <option value="2">Choice 2</option>
@@ -69,7 +69,7 @@
             <div class="row">
                <label>Please select target group</label>
                <div class="input-field col s12">
-                  <select class="browser-default">
+                  <select class="browser-default" required>
                      <option disabled="disabled" selected="selected">Target group</option>
                      <option value="1">Below 18</option>
                      <option value="2">18-35</option>
@@ -80,13 +80,13 @@
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Female participants:" id="female_participants" type="text" class="validate">
+                  <input placeholder="Female participants:" id="female_participants" type="text" class="validate" required pattern ="[0-9]+">
                   <label for="female_participants">Number of female participants</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Male participants:" id="male_participants" type="text" class="validate" >
+                  <input placeholder="Male participants:" id="male_participants" type="text" class="validate" required pattern ="[0-9]+">
                   <label for="male_participants">Number of male participants</label>
                </div>
             </div>
@@ -104,13 +104,13 @@
             </script>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Types of exploitation:" id="exploitation_types" type="text" class="validate">
+                  <input placeholder="Types of exploitation:" id="exploitation_types" type="text" class="validate" required >
                   <label for="exploitation_types">Types of exploitation</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Types of trafficking:" id="trafficking_types" type="text" class="validate">
+                  <input placeholder="Types of trafficking:" id="trafficking_types" type="text" class="validate" required >
                   <label for="trafficking_types">Types of trafficking </label>
                </div>
             </div>
@@ -147,19 +147,19 @@
                   </form> -->
                   <div class="row">
                       <div class="input-field">
-                         <input placeholder="Who are the traffickers?" id="trafficker_types" type="text" class="validate">
+                         <input placeholder="Who are the traffickers?" id="trafficker_types" type="text" class="validate" required >
                          <label for="trafficking_types">Trafficker type:</label>
                       </div>
                    </div>
                    <div class="row">
                       <div class="input-field">
-                         <input placeholder="Who are the victims?" id="trafficking_types" type="text" class="validate">
+                         <input placeholder="Who are the victims?" id="trafficking_types" type="text" class="validate" required >
                          <label for="trafficking_types">Victim type: </label>
                       </div>
                    </div>
                    <div class="row">
                       <div class="input-field">
-                         <input placeholder="What is the biggest need in adressing human trafficking?" id="trafficking_types" type="text" class="validate">
+                         <input placeholder="What is the biggest need in adressing human trafficking?" id="trafficking_types" type="text" class="validate" required >
                          <label for="trafficking_types">Biggest need in adressing human trafficking: </label>
                       </div>
                    </div>
