@@ -18,7 +18,6 @@ router.get("/form", function(req, res) {
 });
 
 router.post("/form", function(req, res) {
-
   //A post request for the form actually collect the data and store it in Mongo
   console.log("we are here");
   var venue = req.body.element_2
@@ -48,13 +47,13 @@ router.post("/form", function(req, res) {
   // var totalparticipations =parseInt(fadults,10) + parseInt(madults,10)
   //var newform = mongoose.model("entries", formSchema);
 
-  formSchema.create(form,function(err,res){
-    if (err){
+  formSchema.create(form, function(err, res) {
+    if (err) {
       console.log(err);
-    } else{
+    } else {
       console.log(res);
     }
-  })
+  });
   console.log("We've done the thing");
   res.redirect("/");
 });
@@ -82,12 +81,8 @@ router.post("/createAccount", function(req, res) {
 });
 
 //For Cici's code
-router.get("/administratorPage_v1", function(req, res) {
-  res.render("administratorPage_v1");
-});
-
-router.get("/administratorPage_v2", function(req, res) {
-  res.render("administratorPage_v2");
+router.get("/administratorPage", function(req, res) {
+  res.render("administratorPage");
 });
 
 //This is just a sanity check to make sure things work

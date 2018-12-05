@@ -1,221 +1,228 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-  </head>
-  <body>
-  </body>
-  <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-</html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>Starter Template - Materialize</title>
+      <!-- CSS  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="/stylesheets.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   </head>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HAARTKenya Facilitator form</title>
-<link rel="stylesheet" type="text/css" href="view.css" media="all">
-<script type="text/javascript" src="view.js"></script>
-<script type="text/javascript" src="calendar.js"></script>
+     <body>
+      <nav>
+      <div class="nav-wrapper">
+         <nav class="grey">
+            <a href="#" class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
+      </div>
+      </nav>
+      <div class="section no-pad-bot" id="index-banner">
+
+         <div class="container">
+            <div class= "col s12 m9 l10">
+
+            <!-- Page Content goes here -->
+            <div class="row">
+               <label for="workshopdate" class="">Workshop date</label>
+               <input type="date" class="datepicker" required>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Worskop Venue" id="workshop_venue" type="text" class="validate" required >
+                  <label for="workshop_venue">Workshop Venue</label>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select workshop type</label>
+               <div class="input-field col s12">
+                  <select class="browser-default" required>
+                     <option disabled="disabled" selected="selected">Workshop type</option>
+                     <option value="1">Grassroots</option>
+                     <option value="2">Child trafficking</option>
+                     <option value="3">First responder</option>
+                     <option value="4">Safe migration</option>
+                     <option value="5">Young@HAART</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select Town</label>
+               <div class="input-field col s12" >
+                  <select class="browser-default" required>
+                     <option disabled="disabled" selected="selected">Town</option>
+                     <option value="1">Choice 1</option>
+                     <option value="2">Choice 2</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select County</label>
+               <div class="input-field col s12">
+                  <select class="browser-default" required>
+                     <option disabled="disabled" selected="selected">Country</option>
+                     <option value="1">Choice 1</option>
+                     <option value="2">Choice 2</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+               <label>Please select target group</label>
+               <div class="input-field col s12">
+                  <select class="browser-default" required>
+                     <option disabled="disabled" selected="selected">Target group</option>
+                     <option value="1">Below 18</option>
+                     <option value="2">18-35</option>
+                     <option value="3">36-55</option>
+                     <option value="4">56+</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Female participants:" id="female_participants" type="text" class="validate" required pattern ="[0-9]+">
+                  <label for="female_participants">Number of female participants</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Male participants:" id="male_participants" type="text" class="validate" required pattern ="[0-9]+">
+                  <label for="male_participants">Number of male participants</label>
+               </div>
+            </div>
+            <!-- Calculate sum -->
+            <input type="number" id="result" readonly />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+               $(function () {
+                 $("#female_participants, #male_participants").keyup(function () {
+                   $("#result").val(+$("#female_participants").val() + +$("#male_participants").val());
+                 });
+               });
+
+
+
+            </script>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Types of exploitation:" id="exploitation_types" type="text" class="validate" required >
+                  <label for="exploitation_types">Types of exploitation</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field">
+                  <input placeholder="Types of trafficking:" id="trafficking_types" type="text" class="validate" required >
+                  <label for="trafficking_types">Types of trafficking </label>
+               </div>
+            </div>
+         </div>
+            <div id="radio" class="section scrollspy">
+               <form action="#">
+                  <label>Is the area where you are primarily source or destination?</label>
+                  <p>
+                     <label>
+                     <input type="radio" />
+                     <span>Source</span>
+                     </label>
+                     <!-- <div class="reveal-if-active">
+                        Anything you want in here.
+                      </div> -->
+                  </p>
+                  <p>
+                     <label>
+                     <input type="radio" />
+                     <span>Destination</span>
+                     </label>
+                  </p>
+               <!-- </form>
+               <form name="BrowserSurvey" action="#">
+                  Browser: <select name="browser" onchange="if(this.options[this.selectedIndex].value=='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}">
+                    <option></option>
+                    <option value="customOption">[type a custom value]</option>
+                    <option>Chrome</option>
+                    <option>Firefox</option>
+                    <option>Internet Explorer</option>
+                    <option>Opera</option>
+                    <option>Safari</option></select><input name="browser" style="display:none;" disabled="disabled" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+                  <input type="submit" value="Submit">
+                  </form> -->
+                  <div class="row">
+                      <div class="input-field">
+                         <input placeholder="Who are the traffickers?" id="trafficker_types" type="text" class="validate" required >
+                         <label for="trafficking_types">Trafficker type:</label>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="input-field">
+                         <input placeholder="Who are the victims?" id="trafficking_types" type="text" class="validate" required >
+                         <label for="trafficking_types">Victim type: </label>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="input-field">
+                         <input placeholder="What is the biggest need in adressing human trafficking?" id="trafficking_types" type="text" class="validate" required >
+                         <label for="trafficking_types">Biggest need in adressing human trafficking: </label>
+                      </div>
+                   </div>
+            </div>
+         </div>
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+            </button>
+      </div>
+
+      </div>
+      <!-- Footer -->
+      <footer class="page-footer red">
+         <div class="container">
+            <div class="container">
+               Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Hack4Impact at Boston University</a>
+            </div>
+         </div>
+      </footer>
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+      <!-- Script for drop down -->
+      <script langauge="JavaScript">
+         document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+         });
+         $(document).ready(function(){
+          $('select').formSelect();
+         });
+      </script>
+
+      <!-- Warn user from leaving form before submission -->
+      <script langauge="JavaScript">
+      // Enable navigation prompt
+      window.onbeforeunload = function() {
+      return true;
+        };
+      // Remove navigation prompt
+      window.onbeforeunload = null;
+      </script>
+
+
+      <!-- [x] CSS for additional form fields [x] -->
+      <head>
+          <style>
+            .reveal-if-active {
+              opacity: 0;
+              max-height: 0;
+              overflow: hidden;
+            }
+            input[type="radio"]:checked ~ .reveal-if-active,
+            input[type="checkbox"]:checked ~ .reveal-if-active {
+            opacity: 1;
+            max-height: 100px; /* little bit of a magic number :( */
+            overflow: visible;
+            }
+
+
+    </style>
 </head>
-<body id="main_body" >
-
-	<img id="top" src="top.png" alt="">
-	<div id="form_container">
-		<h1><a>HAARTKenya Facilitator form</a></h1>
-		<form id="form_32820" class="appnitro" method="post" action="/form">
-					<div class="form_description">
-			<h2>Facilitator Form</h2>
-			<p>Some description.</p>
-		</div>
-			<ul >
-
-					<li id="li_1" >
-		<label class="description" for="element_1">Insert workshop date </label>
-		<span>
-			<input id="element_1_1" name="element_1_1" class="element text" size="2" maxlength="2" value="" type="text"> /
-			<label for="element_1_1">MM</label>
-		</span>
-    <script type="text/javascript">
-
-    app.post('/', function(request, response){
-      console.log(request.body.element_1_1);      
-    });
-
-
-
-
-    </script>
-		<span>
-			<input id="element_1_2" name="element_1_2" class="element text" size="2" maxlength="2" value="" type="text"> /
-			<label for="element_1_2">DD</label>
-		</span>
-		<span>
-	 		<input id="element_1_3" name="element_1_3" class="element text" size="4" maxlength="4" value="" type="text">
-			<label for="element_1_3">YYYY</label>
-		</span>
-
-		<span id="calendar_1">
-			<img id="cal_img_1" class="datepicker" src="calendar.gif" alt="Pick a date.">
-		</span>
-		<script type="text/javascript">
-			Calendar.setup({
-			inputField	 : "element_1_3",
-			baseField    : "element_1",
-			displayArea  : "calendar_1",
-			button		 : "cal_img_1",
-			ifFormat	 : "%B %e, %Y",
-			onSelect	 : selectDate
-			});
-		</script>
-		<p class="guidelines" id="guide_1"><small>Insert Guidelines for user, if any. </small></p>
-		</li>		<li id="li_2" >
-		<label class="description" for="element_2">Workshop venue: </label>
-		<div>
-			<input id="element_2" name="element_2" class="element text medium" type="text" maxlength="255" value=""/>
-		</div>
-		</li>		<li id="li_10" >
-		<label class="description" for="element_10">Type of workshop </label>
-		<div>
-		<select class="element select medium" id="element_10" name="element_10">
-			<option value="" selected="selected"></option>
-<option value="1" >Grassroots</option>
-<option value="2" >Child trafficking</option>
-<option value="3" >First responder</option>
-<option value="4" >Safe migration</option>
-<option value="5" >Young@HAART</option>
-
-		</select>
-		</div>
-		</li>		<li id="li_3" >
-		<label class="description" for="element_3">Facilitator name (should this be automatic?) </label>
-		<span>
-			<input id="element_3_1" name= "element_3_1" class="element text" maxlength="255" size="8" value=""/>
-			<label>First</label>
-		</span>
-		<span>
-			<input id="element_3_2" name= "element_3_2" class="element text" maxlength="255" size="14" value=""/>
-			<label>Last</label>
-		</span>
-		</li>		<li id="li_11" >
-		<label class="description" for="element_11">Town  </label>
-		<div>
-		<select class="element select medium" id="element_11" name="element_11">
-			<option value="" selected="selected"></option>
-<option value="1" >First option</option>
-<option value="2" >Second option</option>
-<option value="3" >Third option</option>
-
-		</select>
-		</div>
-		</li>		<li id="li_12" >
-		<label class="description" for="element_12">County </label>
-		<div>
-		<select class="element select medium" id="element_12" name="element_12">
-			<option value="" selected="selected"></option>
-<option value="1" >First option</option>
-<option value="2" >Second option</option>
-<option value="3" >Third option</option>
-
-		</select>
-		</div>
-		</li>		<li id="li_13" >
-		<label class="description" for="element_13">Target group </label>
-		<div>
-		<select class="element select medium" id="element_13" name="element_13">
-			<option value="" selected="selected"></option>
-<option value="1" >Youth</option>
-<option value="2" >Women's group</option>
-<option value="3" >Church group</option>
-
-		</select>
-		</div>
-		</li>		<li id="li_14" >
-		<label class="description" for="element_14">Age group </label>
-		<div>
-		<select class="element select medium" id="element_14" name="element_14">
-			<option value="" selected="selected"></option>
-<option value="1" >Below 18</option>
-<option value="2" >36-55</option>
-<option value="3" >56+</option>
-
-		</select>
-		</div>
-		</li>		<li id="li_4" >
-		<label class="description" for="element_4">Number of female participants: </label>
-		<div>
-			<input id="element_4" name="element_4" class="element text medium" type="text" maxlength="255" value=""/>
-		</div>
-		</li>		<li id="li_5" >
-		<label class="description" for="element_5">Number of male participants: </label>
-		<div>
-			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value=""/>
-		</div>
-		</li>		<li class="section_break">
-			<h3>Section Break</h3>
-			<p></p>
-		</li>		<li id="li_15" >
-		<label class="description" for="element_15">Multiple Choice </label>
-		<span>
-			<input id="element_15_1" name="element_15" class="element radio" type="radio" value="1" />
-<label class="choice" for="element_15_1">First option</label>
-<input id="element_15_2" name="element_15" class="element radio" type="radio" value="2" />
-<label class="choice" for="element_15_2">Second option</label>
-<input id="element_15_3" name="element_15" class="element radio" type="radio" value="3" />
-<label class="choice" for="element_15_3">Third option</label>
-
-		</span>
-		</li>		<li id="li_7" >
-		<label class="description" for="element_7">Paragraph </label>
-		<div>
-			<textarea id="element_7" name="element_7" class="element textarea medium"></textarea>
-		</div>
-		</li>		<li id="li_16" >
-		<label class="description" for="element_16">Checkboxes </label>
-		<span>
-			<input id="element_16_1" name="element_16_1" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_16_1">First option</label>
-<input id="element_16_2" name="element_16_2" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_16_2">Second option</label>
-<input id="element_16_3" name="element_16_3" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_16_3">Third option</label>
-
-		</span>
-		</li>		<li id="li_8" >
-		<label class="description" for="element_8">Upload a File </label>
-		<div>
-			<input id="element_8" name="element_8" class="element file" type="file"/>
-		</div>
-		</li>		<li id="li_9" >
-		<label class="description" for="element_9">Phone </label>
-		<span>
-			<input id="element_9_1" name="element_9_1" class="element text" size="3" maxlength="3" value="" type="text"> -
-			<label for="element_9_1">(###)</label>
-		</span>
-		<span>
-			<input id="element_9_2" name="element_9_2" class="element text" size="3" maxlength="3" value="" type="text"> -
-			<label for="element_9_2">###</label>
-		</span>
-		<span>
-	 		<input id="element_9_3" name="element_9_3" class="element text" size="4" maxlength="4" value="" type="text">
-			<label for="element_9_3">####</label>
-		</span>
-
-		</li>
-
-					<li class="buttons">
-			    <input type="hidden" name="form_id" value="32820" />
-
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
-		</li>
-			</ul>
-		</form>
-		<div id="footer">
-		</div>
-	</div>
-	<img id="bottom" src="bottom.png" alt="">
-	</body>
+      </div>
+   </body>
 </html>
-</div>
