@@ -38,6 +38,16 @@
 			<input id="element_1_1" name="element_1_1" class="element text" size="2" maxlength="2" value="" type="text"> /
 			<label for="element_1_1">MM</label>
 		</span>
+    <script type="text/javascript">
+
+    app.post('/', function(request, response){
+      console.log(request.body.element_1_1);      
+    });
+
+
+
+
+    </script>
 		<span>
 			<input id="element_1_2" name="element_1_2" class="element text" size="2" maxlength="2" value="" type="text"> /
 			<label for="element_1_2">DD</label>

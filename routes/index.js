@@ -20,7 +20,7 @@ router.get("/form", function(req, res) {
 router.post("/form", function(req, res) {
 
   //A post request for the form actually collect the data and store it in Mongo
-
+  console.log("we are here");
   var venue = req.body.element_2
   var workshop = req.body.element_10 //convert to name
   var firstname = req.body.element_3_1
@@ -43,6 +43,8 @@ router.post("/form", function(req, res) {
   fadult: fadults,
   madults: madults}
 
+  console.log(form);
+
   // var totalparticipations =parseInt(fadults,10) + parseInt(madults,10)
   //var newform = mongoose.model("entries", formSchema);
 
@@ -56,6 +58,8 @@ router.post("/form", function(req, res) {
   console.log("We've done the thing");
   res.redirect("/");
 });
+
+
 
 router.get("/logout", function(req, res) {
   //Def need a logout feature for security purposes
