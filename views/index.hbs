@@ -38,6 +38,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js">
   </script>
 </head>
+
 <body style="background-color: grey">
 
   <nav>
@@ -65,7 +66,14 @@
       <div class="col s6 offset-6">
         <button class="waves-effect waves-light btn modal-trigger" data-target="modal2">Click Here If You Are A Facilitator</button>
       </div>
+      <div class="col s6">
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal3">Administrator Registration</button>
+      </div>
+      <div class="col s6 offset-6">
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal4">Facilitator Registration</button>
+      </div>
     </div>
+  </div>
   </div>
 
   </div>
@@ -101,8 +109,6 @@
   <div id="modal2" class="modal">
     <div class="modal-content">
       <h4>Login as a Facilitator</h4>
-
-
       <div class="row">
         <form class="col s12">
           <div class="row modal-form-row">
@@ -127,24 +133,145 @@
       </div>
     </div>
   </div>
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <h4> Register as a Facilitator</h4>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Email</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">First Name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Last Name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Confirm Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
+    </div>
+  </div>
+
+
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4> Register as a Administrator</h4>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Email</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">First Name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Last Name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Confirm Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
+    </div>
+  </div>
+  </div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  </body>
+</body>
 
 
-  <script language="JavaScript">document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.modal');
-      var instances = M.Modal.init(elems, options);
-    });
+<script language="JavaScript">document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
 
 
-    $(document).ready(function () {
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal-trigger').leanModal();
+  $(document).ready(function () {
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
 
-    });
+  });
 
-  </script>
+</script>
 
 </html>
