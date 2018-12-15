@@ -1,0 +1,167 @@
+
+      <title>The Materialize Example</title>
+      <meta name="viewport" content="width = device-width, initial-scale = 1">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+      </script>
+
+
+<div class="card-panel grey lighten-1">
+<h6>Welcome back administrator!</h6>
+<h5>Data Visualization Page</h5>
+<div class="col s14"><span class="flow-text">
+  <a class="btn btn-medium btn-register waves-effect waves-light" href="administratorPage" type="button" name="action">Manage Facilitators</a>
+  <p><a class="btn btn-medium btn-register waves-effect waves-light" href="form" type="button" name="action">Fill Form</a></p>
+</span>
+
+
+<!-- Facilitator List -->
+<div class="col s12"><span class="flow-text">
+<ul class="collection">
+
+    <li class="collection-item">Facilitator 1
+        <!-- Modal Trigger To View Profile -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Click To See Profile</a>
+
+        <!-- Modal Structure View Profile -->
+        <div id="modal2" class="modal">
+          <div class="modal-content">
+            <h4>Facilitator 1</h4>
+            <p>Last Logged In:</p>
+            <p>Log In Times:</p>
+            <p>Country:</p>
+            <p>Join Date:</p>
+            <p>Position:</p>
+            <p>Work Experience:</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+          </div>
+        </div>
+    
+        <!-- Filled in check box -->
+        <input type="checkbox" class="filled-in" name="some-key1" id="checkbox1" /><label for="checkbox1"></label>
+        </p>
+        
+    
+    </li>
+    
+    <li class="collection-item">Facilitator 2
+      <!-- Modal Trigger To View Profile -->
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Click To See Profile</a>
+
+      <!-- Modal Structure View Profile -->
+      <div id="modal3" class="modal">
+        <div class="modal-content">
+          <h4>Facilitator 2</h4>
+          <p>Last Logged In:</p>
+          <p>Log In Times:</p>
+          <p>Country:</p>
+          <p>Join Date:</p>
+          <p>Position:</p>
+          <p>Work Experience:</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
+  
+      <!-- Filled in check box -->
+      <input type="checkbox" class="filled-in" name="some-key2" id="checkbox2" /><label for="checkbox2"></label>
+      </p>
+    </li>
+
+
+    <li class="collection-item">Facilitator 3</li>
+    <li class="collection-item">Facilitator 4</li>
+
+</ul>
+</span>
+
+
+<!-- Select / deselect all checkbox -->
+<input type="checkbox" class="filled-in" id="checkbox0" data-check-pattern="[name^='some-key']" /><label for="checkbox0">Select All</label>
+<style>
+    label {
+    color: rgb(4, 44, 27);
+    cursor: default;
+    }
+</style>
+
+
+<!-- Jump to visualization page !!!!!!!!!!!!!!!!!! NEED TO UPDATE THE LINK TO HANNAH & MAHA'S PAGE -->
+<p>
+<a class="btn btn-medium btn-register waves-effect waves-light" href="form.hbs" type="button" name="action">Click here to see visualization</a>
+</p>
+
+
+<style type="text/css">
+
+label {
+  display:inline-block;
+  vertical-align:middle;
+}
+.label-content {
+   height:100px;
+   background-color:aliceblue;
+   border: 1px solid green;
+}
+</style>
+
+
+
+  <!-- Modal Initialization -->
+  <script language="JavaScript">
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+  
+    // Or with jQuery
+  
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+    });
+    // Or with jQuery
+  
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems, options);
+    });
+
+
+// CHECKBOX SELECT ALL / DESELECT ALL
+jQuery(function() {
+	jQuery('[data-check-pattern]').checkAll();
+});
+
+;(function($) {
+	'use strict';
+	
+	$.fn.checkAll = function(options) {
+		return this.each(function() {
+			var mainCheckbox = $(this);
+			var selector = mainCheckbox.attr('data-check-pattern');
+			var onChangeHandler = function(e) {
+				var $currentCheckbox = $(e.currentTarget);
+				var $subCheckboxes;
+				
+				if ($currentCheckbox.is(mainCheckbox)) {
+					$subCheckboxes = $(selector);
+					$subCheckboxes.prop('checked', mainCheckbox.prop('checked'));
+				} else if ($currentCheckbox.is(selector)) {
+					$subCheckboxes = $(selector);
+					mainCheckbox.prop('checked', $subCheckboxes.filter(':checked').length === $subCheckboxes.length);
+				}
+			};
+			
+			$(document).on('change', 'input[type="checkbox"]', onChangeHandler);
+		});
+	};
+}(jQuery));
+  
+  
+    </script>  </div>
