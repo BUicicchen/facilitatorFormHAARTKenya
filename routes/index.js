@@ -19,30 +19,30 @@ router.get("/form", function(req, res) {
 
 router.post("/form", function(req, res) {
   //A post request for the form actually collect the data and store it in Mongo
+  console.log("we are here");
+  var venue = req.body.element_2
+  var workshop = req.body.element_10 //convert to name
+  var firstname = req.body.element_3_1
+  var lastname  = req.body.element_3_2
+  var town = req.body.element_11
+  var county = req.body.element_12
+  var targetgroup = req.body.element_13
+  var agegroup = req.body.element_14
+  var fadults = req.body.element_4
+  var madults = req.body.element_5
 
-  var venue = req.body.element_2;
-  var workshop = req.body.element_10; //convert to name
-  var firstname = req.body.element_3_1;
-  var lastname = req.body.element_3_2;
-  var town = req.body.element_11;
-  var county = req.body.element_12;
-  var targetgroup = req.body.element_13;
-  var agegroup = req.body.element_14;
-  var fadults = req.body.element_4;
-  var madults = req.body.element_5;
+  var form = {venue: venue,
+  workshop: workshop, //each category represented as a number
+  fname : firstname,
+  lname : lastname,
+  town: town,
+  county: county,
+  targetgroup: targetgroup,
+  agegroup: agegroup,
+  fadult: fadults,
+  madults: madults}
 
-  var form = {
-    venue: venue,
-    workshop: workshop, //each category represented as a number
-    fname: firstname,
-    lname: lastname,
-    town: town,
-    county: county,
-    targetgroup: targetgroup,
-    agegroup: agegroup,
-    fadult: fadults,
-    madults: madults
-  };
+  console.log(form);
 
   // var totalparticipations =parseInt(fadults,10) + parseInt(madults,10)
   //var newform = mongoose.model("entries", formSchema);
@@ -57,6 +57,8 @@ router.post("/form", function(req, res) {
   console.log("We've done the thing");
   res.redirect("/");
 });
+
+
 
 router.get("/logout", function(req, res) {
   //Def need a logout feature for security purposes
