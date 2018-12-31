@@ -81,6 +81,10 @@ router.post("/createAccount", function(req, res) {
 });
 
 //For Cici's code
+router.get("/dataVisualizationPage", function(req, res) {
+  res.render("dataVisualizationPage");
+});
+
 router.get("/administratorPage", function(req, res) {
   res.render("administratorPage");
 });
