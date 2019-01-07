@@ -8,7 +8,68 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="/stylesheets.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
    </head>
+
+   <script>
+   $(document).ready(function () {
+     //Global variables to hold the inputed longitude and latitude
+     var long = "";
+     var lat = "";
+
+     //if they change the latitude input field, update it
+     $("#latitude").change(function () {
+       lat = $("#latitude").val();
+       updateGPS();
+     });
+
+     //if they change the longitude input field, update it
+     $("#longitude").change(function () {
+       long = $("#longitude").val();
+       updateGPS();
+     });
+
+     //A helper function that calls the Google Maps API.
+     //Takes in longitude and latitude and returns a JSON object
+     //The JSON can be parsed to find the city name and county
+     //More information here: https://developers.google.com/maps/documentation/geocoding/start?csw=1#ReverseGeocoding
+     function updateGPS(){
+       if(lat != "" && long != ""){
+         var api = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + long + "&key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM";
+
+         $.get(api, function (data, status) {
+           var res = data;
+           var resArray = res.results[1].address_components;
+           var i;
+           var city = (((res.plus_code.compound_code).split(" "))[1]).replace(/,/g,"");
+           var county = "";
+           var countyFound = false;
+
+           for (i = 0; i < resArray.length; i++){
+             if(countyFound) {
+               break;
+             }
+             if ((resArray[i].types).includes("administrative_area_level_1")) {
+               county = resArray[i].long_name;
+               countyFound = true;
+             }
+           }
+
+           $("#town").val(city);
+
+           if(countyFound){
+             $("#county").val(county);
+           } else {
+             $("#county").val("County not found :( Input manually");
+           }
+         });
+       }
+     };
+
+
+   });
+
+   </script>
 
      <body>
       <nav>
@@ -17,6 +78,7 @@
             <a href="#" class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
       </div>
       </nav>
+
       <div class="section no-pad-bot" id="index-banner">
 
          <div class="container">
@@ -46,25 +108,19 @@
                   </select>
                </div>
             </div>
-            <div class="row">
-               <label>Please select Town</label>
-               <div class="input-field col s12" >
-                  <select class="browser-default" required>
-                     <option disabled="disabled" selected="selected">Town</option>
-                     <option value="0">Choice 1</option>
-                     <option value="1">Choice 2</option>
-                  </select>
-               </div>
+
+            <div class = "row">
+              <label> Please enter Latitude, Longitude</div>
+                <input placeholder="Latitude" id="latitude" type="text">
+                <input placeholder="Longitude" id="longitude" type="text">
             </div>
             <div class="row">
-               <label>Please select County</label>
-               <div class="input-field col s12">
-                  <select class="browser-default" required>
-                     <option disabled="disabled" selected="selected">Country</option>
-                     <option value="0">Choice 1</option>
-                     <option value="1">Choice 2</option>
-                  </select>
-               </div>
+               <label>Please enter County</label>
+               <input placeholder="County" id="county" type="text">
+            </div>
+            <div class="row">
+               <label>Please enter Town</label>
+               <input placeholder="Town" id="town" type="text">
             </div>
             <div class="row">
                <label>Please select target group</label>
@@ -168,12 +224,12 @@
             <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Submit</a>
             <i class="material-icons right">send</i>
          </a>
-         
+
          <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Back</a>
-            
+
       </div>
 
-            
+
 
 
 
@@ -211,7 +267,7 @@
       window.onbeforeunload = null;
 
 
-      
+
       </script>
 
 
