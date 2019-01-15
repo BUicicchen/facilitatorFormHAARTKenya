@@ -3,7 +3,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-      <title>Starter Template - Materialize</title>
+      <title>Form</title>
       <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -12,7 +12,28 @@
    </head>
 
    <script>
+
+   var submitting = false;
+
+   window.addEventListener("beforeunload", function (e) {
+     if(!submitting){
+       var confirmationMessage = 'It looks like you have been editing something. '
+                               + 'If you leave before saving, your changes will be lost.';
+
+       (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+       return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+     }
+     else{
+       return;
+     }
+   });
+
+
    $(document).ready(function () {
+     var d = new Date();
+     document.getElementById("timeStamp").innerHTML = "Current Time: " + d;
+
+
      //Global variables to hold the inputed longitude and latitude
      var long = "";
      var lat = "";
@@ -66,6 +87,62 @@
        }
      };
 
+     $("#male_participants").change(function () {
+       var value = parseInt($("#male_participants").val(), 10);
+       if ($("#total_participants").val() == ""){
+         $("#total_participants").val(value.toString());
+       } else {
+         $("#total_participants").val((value + parseInt($("#total_participants").val(),10)).toString());
+       }
+     });
+
+     $("#female_participants").change(function () {
+       var value = parseInt($("#female_participants").val(), 10);
+       if ($("#total_participants").val() == ""){
+         $("#total_participants").val(value.toString());
+       } else {
+         $("#total_participants").val((value + parseInt($("#total_participants").val(),10)).toString());
+       }
+     });
+
+     $("#other_participants").change(function () {
+       var value = parseInt($("#other_participants").val(), 10);
+       if ($("#total_participants").val() == ""){
+         $("#total_participants").val(value.toString());
+       } else {
+         $("#total_participants").val((value + parseInt($("#total_participants").val(),10)).toString());
+       }
+     });
+
+     $("#typesOfExploitation").on('change', function () {
+       var current = $(this).val();
+       if(current.includes("other_exploit") && $("#other_exploit_display").css("display") != "block"){
+         $("#other_exploit_display").css("display", "block");
+       }
+     });
+
+     $("#source").click(function (){
+       if($("#source_display").css("display") != "block"){
+         $("#source_display").css("display", "block");
+       } else {
+         $("#source_display").css("display", "none");
+       }
+     });
+
+     $("#destination").click(function (){
+       if($("#destination_display").css("display") != "block"){
+         $("#destination_display").css("display", "block");
+       } else {
+         $("#destination_display").css("display", "none");
+       }
+     });
+
+     $("#whoAreTheVictims").on('change', function () {
+       var current = $(this).val();
+       if(current.includes("otherVictims") && $("#other_victims_display").css("display") != "block"){
+         $("#other_victims_display").css("display", "block");
+       }
+     });
 
    });
 
@@ -82,6 +159,7 @@
       <div class="section no-pad-bot" id="index-banner">
 
          <div class="container">
+           <form>
             <div class= "col s12 m9 l10">
 
             <!-- Page Content goes here -->
@@ -123,16 +201,51 @@
                <input placeholder="Town" id="town" type="text">
             </div>
             <div class="row">
-               <label>Please select target group</label>
+               <label>Please select age group</label>
                <div class="input-field col s12">
                   <select class="browser-default" required>
-                     <option disabled="disabled" selected="selected">Target group</option>
+                     <option disabled="disabled" selected="selected">Age group</option>
                      <option value="0">Below 18</option>
                      <option value="1">18-35</option>
                      <option value="2">36-55</option>
                      <option value="3">56+</option>
                   </select>
                </div>
+            </div>
+            <div class="row">
+              <label>Please select target group</label>
+                <div class="input-field col s12">
+                  <p>
+                    <label>
+                      <input type="checkbox" name="womenGroup" value="womenGroup" />
+                      <span>Women's Group</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="churchGroup" value="churchGroup" />
+                      <span>Church Group</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="firstResponders" value="firstResponders" />
+                      <span>First Responders</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="children" value="children" />
+                      <span>Children</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="communityGroup" value="communityGroup" />
+                      <span>Community Group</span>
+                    </label>
+                  </p>
+                </div>
             </div>
             <div class="row">
                <div class="input-field">
@@ -146,102 +259,162 @@
                   <label for="male_participants">Number of male participants</label>
                </div>
             </div>
-            <!-- Calculate sum -->
-            <input type="number" id="result" readonly />
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-               $(function () {
-                 $("#female_participants, #male_participants").keyup(function () {
-                   $("#result").val(+$("#female_participants").val() + +$("#male_participants").val());
-                 });
-               });
-
-
-
-            </script>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Types of exploitation:" id="exploitation_types" type="text" class="validate" required >
-                  <label for="exploitation_types">Types of exploitation</label>
+                  <input placeholder="Other participants:" id="other_participants" type="text" class="validate" required pattern ="[0-9]+">
+                  <label for="male_participants">Number of other participants</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Types of trafficking:" id="trafficking_types" type="text" class="validate" required >
-                  <label for="trafficking_types">Types of trafficking </label>
+                  <input placeholder="Total participants:" id="total_participants" type="text">
+                  <label for="total_participants">Number of Total participants</label>
                </div>
             </div>
-         </div>
-            <div id="radio" class="section scrollspy">
-               <form action="#">
-                  <label>Is the area where you are primarily source or destination?</label>
+            <div class="row">
+               <label>Types of Exploitation (Command + click for mutiple)</label>
+               <div class="input-field col s12">
+                  <select class="browser-default" name="typesOfExploitation" id="typesOfExploitation" multiple size="8" style="height: 100%;">
+                    <option value="childLabor">Child Labor</option>
+                    <option value="sexualExploitation">Sexual Exploitation</option>
+                    <option value="organRemoval">Organ Removal</option>
+                    <option value="forcedAdultMarriages">Forced Adult Marriages</option>
+                    <option value="childMarriages">Child Marriages</option>
+                    <option value="forcedLabor">Forced Labor</option>
+                    <option value="beggin">Begging</option>
+                    <option value="other_exploit">Other</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field" id = "other_exploit_display" style="display: none">
+                  <input placeholder="Other:" id="other_exploit_box" type="text">
+                  <label for="other_exploit_box">Other Exploit</label>
+               </div>
+            </div>
+            <div class="row">
+               <label>Types of Trafficking (Command + click for mutiple)</label>
+               <div class="input-field col s12">
+                  <select class="browser-default" name="typesOfTrafficking" id="typesOfTrafficking" multiple size="3" style="height: 100%;">
+                    <option value="internal">Internal</option>
+                    <option value="crossBorder">Cross-Border</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+              <label>Is the area where you are primarily source or destination?</label>
+                <div class="input-field col s12">
                   <p>
                      <label>
-                     <input type="radio" />
+                     <input type="checkbox" name="source" id="source" value="source"/>
                      <span>Source</span>
                      </label>
-                     <!-- <div class="reveal-if-active">
-                        Anything you want in here.
-                      </div> -->
                   </p>
                   <p>
                      <label>
-                     <input type="radio" />
+                     <input type="checkbox" name="destination" id = "destination" value="destination"/>
                      <span>Destination</span>
                      </label>
                   </p>
-               <!-- </form>
-               <form name="BrowserSurvey" action="#">
-                  Browser: <select name="browser" onchange="if(this.options[this.selectedIndex].value=='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}">
-                    <option></option>
-                    <option value="customOption">[type a custom value]</option>
-                    <option>Chrome</option>
-                    <option>Firefox</option>
-                    <option>Internet Explorer</option>
-                    <option>Opera</option>
-                    <option>Safari</option></select><input name="browser" style="display:none;" disabled="disabled" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
-                  <input type="submit" value="Submit">
-                  </form> -->
-                  <div class="row">
-                      <div class="input-field">
-                         <input placeholder="Who are the traffickers?" id="trafficker_types" type="text" class="validate" required >
-                         <label for="trafficking_types">Trafficker type:</label>
-                      </div>
+                </div>
+              </div>
+              <div class="row">
+                 <div class="input-field" id = "source_display" style="display: none">
+                    <input placeholder="Source:" id="source_box" type="text">
+                    <label for="source_box">Source:</label>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="input-field" id = "destination_display" style="display: none">
+                    <input placeholder="Destination:" id="destination_box" type="text">
+                    <label for="destination_box">Destination:</label>
+                 </div>
+              </div>
+                <div class="row">
+                   <label>Who are the Trafficker's? (Command + click for mutiple)</label>
+                   <div class="input-field col s12">
+                      <select class="browser-default" name="whoAreTheTraffickers" id="whoAreTheTraffickers" multiple size="8" style="height: 100%;">
+                        <option value="kenyan">Kenyan</option>
+                        <option value="foreigners">Foreigners</option>
+                        <option value="jobAgents">Job Agents</option>
+                        <option value="relativesOfVictims">Relatives of the Victims</option>
+                        <option value="strangers">Strangers</option>
+                        <option value="criminalGroups">Criminal Groups</option>
+                      </select>
+                   </div>
+                </div>
+                <div class="row">
+                   <label>Who are the Victims's? (Command + click for mutiple)</label>
+                   <div class="input-field col s12">
+                      <select class="browser-default" name="whoAreTheVictims" id="whoAreTheVictims" multiple size="16" style="height: 100%;">
+                        <option value="boys">Boys</option>
+                        <option value="girls">Girls</option>
+                        <option value="adultMen">Adult Men</option>
+                        <option value="adultWomen">Adult Women</option>
+                        <option value="refugesForeigners">Refuges / Foreigners</option>
+                        <option value="orphansDisabled">Orphans / Disababled Persons</option>
+                        <option value="lgbtq">LGBTQ+</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="otherVictims">Other</option>
+                        <option value="strangers">Adult</option>
+                        <option value="childVictim">Child</option>
+                        <option value="rich">Rich</option>
+                        <option value="poor">Poor</option>
+                      </select>
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="input-field" id = "other_victims_display" style="display: none">
+                      <input placeholder="Other:" id="other_victims_box" type="text">
+                      <label for="other_victims_box">Other Victims:</label>
+                   </div>
+                </div>
+                <div class="row">
+                   <label>How are the Victims trafficked? (Command + click for mutiple)</label>
+                   <div class="input-field col s12">
+                      <select class="browser-default" name="howAreTheyTrafficked" id="howAreTheyTrafficked" multiple size="5" style="height: 100%;">
+                        <option value="deception">Deception</option>
+                        <option value="coercionForce">Coercion / Force</option>
+                        <option value="abduction">Abduction</option>
+                        <option value="abuseOfPower">Abuse of Power</option>
+                      </select>
+                   </div>
+                </div>
+                   <div class="row">
+                     <label>What is the biggest need in addressing Human Trafficking</label>
+                     <div class="input-field col s12">
+                        <select class="browser-default" name="biggestNeed" id="biggestNeed">
+                          <option value="lackOfAwareness">Lack of Awareness</option>
+                          <option value="corruption">Corruption</option>
+                          <option value="lackOfServicesForVictims">Lack of Services for Victims</option>
+                          <option value="shameAndStigmatization">Shame and Stigmatization</option>
+                        </select>
+                     </div>
                    </div>
                    <div class="row">
-                      <div class="input-field">
-                         <input placeholder="Who are the victims?" id="trafficking_types" type="text" class="validate" required >
-                         <label for="trafficking_types">Victim type: </label>
-                      </div>
+                     <p id="timeStamp"></p>
                    </div>
-                   <div class="row">
-                      <div class="input-field">
-                         <input placeholder="What is the biggest need in adressing human trafficking?" id="trafficking_types" type="text" class="validate" required >
-                         <label for="trafficking_types">Biggest need in adressing human trafficking: </label>
-                      </div>
-                   </div>
+                   <div>
+                      <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Submit</a>
+                   </a>
+
+                   <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Back</a>
+
+                </div>
+                <br>
+                <br>
+              </form>
             </div>
+            <footer class="page-footer red" style="text-align: center">
+            Made with &hearts; at <a id="footerLink" style="color: white;" href="https://www.Hack4Impactbu.com">Hack4Impact Boston University</a>
+        </footer>
          </div>
-            <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Submit</a>
-            <i class="material-icons right">send</i>
-         </a>
-
-         <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Back</a>
-
-      </div>
 
 
 
 
-
-      </div>
       <!-- Footer -->
-      <footer class="page-footer red">
-         <div class="container">
-            <div class="container">
-               Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Hack4Impact at Boston University</a>
-            </div>
-         </div>
-      </footer>
       <!--  Scripts-->
       <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="js/materialize.js"></script>
@@ -257,23 +430,12 @@
          });
       </script>
 
-      <!-- Warn user from leaving form before submission -->
-      <script langauge="JavaScript">
-      // Enable navigation prompt
-      window.onbeforeunload = function() {
-      return true;
-        };
-      // Remove navigation prompt
-      window.onbeforeunload = null;
-
-
-
-      </script>
 
 
       <!-- [x] CSS for additional form fields [x] -->
       <head>
           <style>
+
             .reveal-if-active {
               opacity: 0;
               max-height: 0;

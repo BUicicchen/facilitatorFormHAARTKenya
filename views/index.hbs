@@ -5,11 +5,11 @@
 
   <style>
     .modal {
-      max-height: 90%;
+      max-height: 90% !important;
     }
 
     .modal-form-row {
-      margin-bottom: 0px;
+      margin-bottom: 0px !important;
     }
 
 
@@ -39,6 +39,48 @@
   </script>
 </head>
 
+<script>
+$(document).ready(function () {
+
+  $("#usernameAdmin").val("@haartkenya.org");
+
+  $("#usernameAdmin").on('input', function() {
+    var current = $("#usernameAdmin").val();
+    var findIndex = current.indexOf("@");
+    current = current.slice(0,findIndex);
+    $("#usernameAdmin").val(current + "@haartkenya.org");
+  });
+
+  $("#usernameFacilitator").val("@haartkenya.org");
+
+  $("#usernameFacilitator").on('input', function() {
+    var current = $("#usernameFacilitator").val();
+    var findIndex = current.indexOf("@");
+    current = current.slice(0,findIndex);
+    $("#usernameFacilitator").val(current + "@haartkenya.org");
+  });
+
+  $("#registerEmailFacilitator").val("@haartkenya.org")
+
+  $("#registerEmailFacilitator").on('input', function() {
+    var current = $("#registerEmailFacilitator").val();
+    var findIndex = current.indexOf("@");
+    current = current.slice(0,findIndex);
+    $("#registerEmailFacilitator").val(current + "@haartkenya.org");
+  });
+
+  $("#registerEmailAdministrator").val("@haartkenya.org");
+
+  $("#registerEmailAdministrator").on('input', function() {
+    var current = $("#registerEmailAdministrator").val();
+    var findIndex = current.indexOf("@");
+    current = current.slice(0,findIndex);
+    $("#registerEmailAdministrator").val(current + "@haartkenya.org");
+  });
+});
+
+
+</script>
 <body style="background-color: grey">
 
   <nav>
@@ -61,22 +103,24 @@
   <div class="container">
     <div class="row">
       <div class="col s6">
-        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1">Click Here If You Are an Administrator</button>
-      </div>
-      <div class="col s6 offset-6">
-        <button class="waves-effect waves-light btn modal-trigger" data-target="modal2">Click Here If You Are A Facilitator</button>
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" style="width:100% !important">Click Here If You Are an Administrator</button>
       </div>
       <div class="col s6">
-        <button class="waves-effect waves-light btn modal-trigger" data-target="modal3">Administrator Registration</button>
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal2" style="width:100% !important">Click Here If You Are A Facilitator</button>
       </div>
-      <div class="col s6 offset-6">
-        <button class="waves-effect waves-light btn modal-trigger" data-target="modal4">Facilitator Registration</button>
+    </div>
+    <br>
+    <br>
+    <div class = "row">
+      <div class="col s6">
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal3" style="width:100% !important">Administrator Registration</button>
+      </div>
+      <div class="col s6">
+        <button class="waves-effect waves-light btn modal-trigger" data-target="modal4" style="width:100% !important">Facilitator Registration</button>
       </div>
     </div>
   </div>
-  </div>
 
-  </div>
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -86,14 +130,14 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Username</label>
+              <input id="usernameAdmin" type="text" class="validate">
+              <label for="usernameAdmin">Username</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="image_title" type="text" class="validate">
-              <label for="image_title">Password</label>
+              <input id="passwordAdmin" type="text" class="validate">
+              <label for="passwordAdmin">Password</label>
             </div>
           </div>
         </form>
@@ -113,16 +157,16 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Username</label>
+              <input id="usernameFacilitator" type="text" class="validate">
+              <label for="usernameFacilitator">Username</label>
             </div>
           </div>
           <div class="row">
             <form class="col s12">
               <div class="row modal-form-row">
                 <div class="input-field col s12">
-                  <input id="image_url" type="text" class="validate">
-                  <label for="image_url">Password</label>
+                  <input id="passwordFacilitator" type="text" class="validate">
+                  <label for="passwordFacilitator">Password</label>
                 </div>
               </div>
             </form>
@@ -140,8 +184,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Email</label>
+              <input id="registerEmailFacilitator" type="text" class="validate">
+              <label for="registerEmailFacilitator">Email</label>
             </div>
           </div>
         </form>
@@ -150,8 +194,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">First Name</label>
+              <input id="registerFirstNameFacilitator" type="text" class="validate">
+              <label for="registerFirstNameFacilitator">First Name</label>
             </div>
           </div>
         </form>
@@ -160,8 +204,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Last Name</label>
+              <input id="registerLastNameFacilitator" type="text" class="validate">
+              <label for="registerLastNameFacilitator">Last Name</label>
             </div>
           </div>
         </form>
@@ -171,8 +215,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Password</label>
+              <input id="registerPasswordFacilitator" type="text" class="validate">
+              <label for="registerPasswordFacilitator">Password</label>
             </div>
           </div>
         </form>
@@ -181,8 +225,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Confirm Password</label>
+              <input id="registerConfirmPasswordFacilitator" type="text" class="validate">
+              <label for="registerConfirmPasswordFacilitator">Confirm Password</label>
             </div>
           </div>
         </form>
@@ -202,8 +246,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Email</label>
+              <input id="registerEmailAdministrator" type="text" class="validate">
+              <label for="registerEmailAdministrator">Email</label>
             </div>
           </div>
         </form>
@@ -212,8 +256,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">First Name</label>
+              <input id="registerFirstNameAdministrator" type="text" class="validate">
+              <label for="registerFirstNameAdministrator">First Name</label>
             </div>
           </div>
         </form>
@@ -222,8 +266,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Last Name</label>
+              <input id="registerLastNameAdministrator" type="text" class="validate">
+              <label for="registerLastNameAdministrator">Last Name</label>
             </div>
           </div>
         </form>
@@ -232,8 +276,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Password</label>
+              <input id="registerPasswordAdministrator" type="text" class="validate">
+              <label for="registerPasswordAdministrator">Password</label>
             </div>
           </div>
         </form>
@@ -242,8 +286,8 @@
         <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="image_url" type="text" class="validate">
-              <label for="image_url">Confirm Password</label>
+              <input id="registerConfirmPasswordAdministrator" type="text" class="validate">
+              <label for="registerConfirmPasswordAdministrator">Confirm Password</label>
             </div>
           </div>
         </form>
@@ -252,7 +296,6 @@
     <div class="modal-footer">
       <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
     </div>
-  </div>
   </div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
