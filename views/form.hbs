@@ -31,7 +31,7 @@
 
    $(document).ready(function () {
      var d = new Date();
-     document.getElementById("timeStamp").innerHTML = "Current Time: " + d;
+     $("#timeStamp").val(d);
 
 
      //Global variables to hold the inputed longitude and latitude
@@ -144,6 +144,10 @@
        }
      });
 
+     $("#submitButton").click(function () {
+       $("#theForm").submit();
+     });
+
    });
 
    </script>
@@ -159,13 +163,13 @@
       <div class="section no-pad-bot" id="index-banner">
 
          <div class="container">
-           <form>
+           <form action = "/form" method = "post" id="theForm" enctype='application/x-www-form-urlencoded'>
             <div class= "col s12 m9 l10">
 
             <!-- Page Content goes here -->
             <div class="row">
                <label for="workshopdate" class="">Workshop date</label>
-               <input type="date" class="datepicker" required>
+               <input type="date" class="datepicker" id = "workshop_date" name="workshop_date" required>
             </div>
             <div class="row">
                <div class="input-field">
@@ -176,7 +180,7 @@
             <div class="row">
                <label>Please select workshop type</label>
                <div class="input-field col s12">
-                  <select class="browser-default" required>
+                  <select class="browser-default" name="workshop_type" required>
                      <option disabled="disabled" selected="selected">Workshop type</option>
                      <option value="0">Grassroots</option>
                      <option value="1">Child trafficking</option>
@@ -194,16 +198,16 @@
             </div>
             <div class="row">
                <label>Please enter County</label>
-               <input placeholder="County" id="county" type="text">
+               <input placeholder="County" id="county" name ="county" type="text">
             </div>
             <div class="row">
                <label>Please enter Town</label>
-               <input placeholder="Town" id="town" type="text">
+               <input placeholder="Town" id="town" name="town" type="text">
             </div>
             <div class="row">
                <label>Please select age group</label>
                <div class="input-field col s12">
-                  <select class="browser-default" required>
+                  <select class="browser-default" required name ="age_group">
                      <option disabled="disabled" selected="selected">Age group</option>
                      <option value="0">Below 18</option>
                      <option value="1">18-35</option>
@@ -249,25 +253,25 @@
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Female participants:" id="female_participants" type="text" class="validate" required pattern ="[0-9]+">
+                  <input placeholder="Female participants:" name="female_participants"id="female_participants" type="text" class="validate" required pattern ="[0-9]+">
                   <label for="female_participants">Number of female participants</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Male participants:" id="male_participants" type="text" class="validate" required pattern ="[0-9]+">
+                  <input placeholder="Male participants:" name="male_participants"id="male_participants" type="text" class="validate" required pattern ="[0-9]+">
                   <label for="male_participants">Number of male participants</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Other participants:" id="other_participants" type="text" class="validate" required pattern ="[0-9]+">
+                  <input placeholder="Other participants:" name="other_participants"id="other_participants" type="text" class="validate" required pattern ="[0-9]+">
                   <label for="male_participants">Number of other participants</label>
                </div>
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Total participants:" id="total_participants" type="text">
+                  <input placeholder="Total participants:" name="total_participants"id="total_participants" type="text">
                   <label for="total_participants">Number of Total participants</label>
                </div>
             </div>
@@ -320,13 +324,13 @@
               </div>
               <div class="row">
                  <div class="input-field" id = "source_display" style="display: none">
-                    <input placeholder="Source:" id="source_box" type="text">
+                    <input placeholder="Source:" id="source_box" name = "source_box" type="text">
                     <label for="source_box">Source:</label>
                  </div>
               </div>
               <div class="row">
                  <div class="input-field" id = "destination_display" style="display: none">
-                    <input placeholder="Destination:" id="destination_box" type="text">
+                    <input placeholder="Destination:" id="destination_box" name = "destination_box" type="text">
                     <label for="destination_box">Destination:</label>
                  </div>
               </div>
@@ -393,13 +397,13 @@
                      </div>
                    </div>
                    <div class="row">
-                     <p id="timeStamp"></p>
+                     <input style="display:none"id="timeStamp" name="timeStamp" value=""></input>
                    </div>
                    <div>
-                      <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Submit</a>
+                      <button class="btn btn-medium btn-register waves-effect waves-light" id="submitButton" >Submit</button>
                    </a>
 
-                   <a class="btn btn-medium btn-register waves-effect waves-light" href="/dataVisualizationPage">Back</a>
+                   <a class="btn btn-medium btn-register waves-effect waves-light" href="/">Back</a>
 
                 </div>
                 <br>
