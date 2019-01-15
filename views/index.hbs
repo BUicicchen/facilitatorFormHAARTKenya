@@ -77,6 +77,23 @@ $(document).ready(function () {
     current = current.slice(0,findIndex);
     $("#registerEmailAdministrator").val(current + "@haartkenya.org");
   });
+
+  $("#submitAdminLogin").click(function () {
+    $("#adminLogin").submit();
+  });
+
+  $("#submitFacilitatorLogin").click(function () {
+    $("#facilitatorLogin").submit();
+  });
+
+  $("#submitFacilitatorRegister").click(function(){
+    $("#facilitatorRegister").submit();
+  });
+
+  $("#submitAdminRegister").click(function () {
+    $("#adminRegister").submit();
+  });
+
 });
 
 
@@ -127,16 +144,16 @@ $(document).ready(function () {
       <h4>Login as an Administrator</h4>
 
       <div class="row">
-        <form class="col s12">
+        <form action = "/adminLogin" method = "post" id="adminLogin" enctype='application/x-www-form-urlencoded' name="adminLogin" class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="usernameAdmin" type="text" class="validate">
+              <input id="usernameAdmin" name="usernameAdmin" type="text" class="form-control">
               <label for="usernameAdmin">Username</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="passwordAdmin" type="text" class="validate">
+              <input id="passwordAdmin" name="passwordAdmin" type="text" class="form-control">
               <label for="passwordAdmin">Password</label>
             </div>
           </div>
@@ -144,7 +161,7 @@ $(document).ready(function () {
       </div>
     </div>
     <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/dataVisualizationPage">Submit</a>
+      <button id="submitAdminLogin" class=" modal-action modal-close waves-effect waves-grey btn-flat">Submit</button>
     </div>
   </div>
 
@@ -154,78 +171,69 @@ $(document).ready(function () {
     <div class="modal-content">
       <h4>Login as a Facilitator</h4>
       <div class="row">
-        <form class="col s12">
+        <form action = "/facilitatorLogin" method = "post" id="facilitatorLogin" enctype='application/x-www-form-urlencoded' name="facilitatorLogin" class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="usernameFacilitator" type="text" class="validate">
+              <input id="usernameFacilitator" name="usernameFacilitator" type="text" class="form-control">
               <label for="usernameFacilitator">Username</label>
             </div>
           </div>
           <div class="row">
-            <form class="col s12">
               <div class="row modal-form-row">
                 <div class="input-field col s12">
-                  <input id="passwordFacilitator" type="text" class="validate">
+                  <input id="passwordFacilitator" name="passwordFacilitator" type="text" class="form-control">
                   <label for="passwordFacilitator">Password</label>
                 </div>
               </div>
-            </form>
           </div>
-      </div>
-      <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
+        </form>
       </div>
     </div>
-  </div>
+      <div class="modal-footer">
+        <button id="submitFacilitatorLogin" class=" modal-action modal-close waves-effect waves-grey btn-flat">Submit</button>
+      </div>
+    </div>
+
   <div id="modal4" class="modal">
     <div class="modal-content">
-      <h4> Register as a Facilitator</h4>
+      <h4>Register as a Facilitator</h4>
+      <form action = "/" method = "post" id="facilitatorRegister" enctype='application/x-www-form-urlencoded' name="facilitatorRegister" class="col s12">
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerEmailFacilitator" type="text" class="validate">
+              <input name="registerEmailFacilitator" id="registerEmailFacilitator" type="text" class="form-control">
               <label for="registerEmailFacilitator">Email</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerFirstNameFacilitator" type="text" class="validate">
+              <input name="registerFirstNameFacilitator" id="registerFirstNameFacilitator" type="text" class="form-control">
               <label for="registerFirstNameFacilitator">First Name</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerLastNameFacilitator" type="text" class="validate">
+              <input name="registerLastNameFacilitator" id="registerLastNameFacilitator" type="text" class="form-control">
               <label for="registerLastNameFacilitator">Last Name</label>
             </div>
           </div>
-        </form>
       </div>
-
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerPasswordFacilitator" type="text" class="validate">
+              <input name="registerPasswordFacilitator" id="registerPasswordFacilitator" type="text" class="form-control">
               <label for="registerPasswordFacilitator">Password</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerConfirmPasswordFacilitator" type="text" class="validate">
+              <input name = "registerConfirmPasswordFacilitator" id="registerConfirmPasswordFacilitator" type="text" class="form-control">
               <label for="registerConfirmPasswordFacilitator">Confirm Password</label>
             </div>
           </div>
@@ -233,7 +241,7 @@ $(document).ready(function () {
       </div>
     </div>
     <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
+      <button id="submitFacilitatorRegister" class=" modal-action modal-close waves-effect waves-grey btn-flat">Submit</button>
     </div>
   </div>
 
@@ -242,51 +250,43 @@ $(document).ready(function () {
   <div id="modal3" class="modal">
     <div class="modal-content">
       <h4> Register as a Administrator</h4>
+      <form action = "/" method = "post" id="adminRegister" enctype='application/x-www-form-urlencoded' name="adminRegister" class="col s12">
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerEmailAdministrator" type="text" class="validate">
+              <input id="registerEmailAdministrator" name="registerEmailAdministrator" type="text" class="form-control">
               <label for="registerEmailAdministrator">Email</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerFirstNameAdministrator" type="text" class="validate">
+              <input id="registerFirstNameAdministrator" name="registerFirstNameAdministrator" type="text" class="form-control">
               <label for="registerFirstNameAdministrator">First Name</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerLastNameAdministrator" type="text" class="validate">
+              <input name="registerLastNameAdministrator" id="registerLastNameAdministrator" type="text" class="form-control">
               <label for="registerLastNameAdministrator">Last Name</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerPasswordAdministrator" type="text" class="validate">
+              <input name="registerPasswordAdministrator" id="registerPasswordAdministrator" type="text" class="form-control">
               <label for="registerPasswordAdministrator">Password</label>
             </div>
           </div>
-        </form>
       </div>
       <div class="row">
-        <form class="col s12">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input id="registerConfirmPasswordAdministrator" type="text" class="validate">
+              <input name="registerConfirmPasswordAdministrator" id="registerConfirmPasswordAdministrator" type="text" class="form-control">
               <label for="registerConfirmPasswordAdministrator">Confirm Password</label>
             </div>
           </div>
@@ -294,7 +294,7 @@ $(document).ready(function () {
       </div>
     </div>
     <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-grey btn-flat" href="/form">Submit</a>
+      <button id="submitAdminRegister" class=" modal-action modal-close waves-effect waves-grey btn-flat">Submit</button>
     </div>
   </div>
 
