@@ -9,6 +9,8 @@ var Account = new Schema({
   lastName: String,
   username: String,
   password: String,
+  valid: Boolean,
+  rand: Number,
   type: String
   //Change these around and add more fields that you may need for an account here!!
 });

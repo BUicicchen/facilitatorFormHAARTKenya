@@ -9,6 +9,7 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 var path = require("path");
 var LocalStrategy = require("passport-local").Strategy;
+require("dotenv").config();
 
 var app = express();
 

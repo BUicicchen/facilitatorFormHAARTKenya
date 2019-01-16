@@ -8,22 +8,36 @@
       </script>
 
 
+      <nav class="teal">
+       <div class="nav-wrapper">
+         <a class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
+         <ul id="nav-mobile" class="left hide-on-med-and-down">
+           {{#if admin}}
+           <li><a href="/administratorPage">Administrator Page</a></li>
+           {{/if}}
+           <li><a href="/form">Form</a></li>
+           <li><a href="/logout">Logout</a></li>
+         </ul>
+       </div>
+      </nav>
+
 <div class="card-panel grey lighten-1">
-<h6>Welcome back administrator!</h6>
+<h6>Welcome back {{name}}!</h6>
 <h5>Data Visualization Page</h5>
-<a class="btn btn-medium btn-register waves-effect waves-light" href="administratorPage" type="button" name="action">Manage Facilitators</a>
+
+<h7>{{data}}</h7>
+<!-- <a class="btn btn-medium btn-register waves-effect waves-light" href="administratorPage" type="button" name="action">Manage Facilitators</a>
 <p><a class="btn btn-medium btn-register waves-effect waves-light" href="form" type="button" name="action">Fill Form</a></p>
 
 
-<!-- Facilitator List -->
+
+
 <div class="col s12"><span class="flow-text">
 <ul class="collection">
 
     <li class="collection-item">Facilitator 1
-        <!-- Modal Trigger To View Profile -->
         <a class="btn btn-medium waves-effect waves-light btn modal-trigger" href="#modal2">Click To See Profile</a>
 
-        <!-- Modal Structure View Profile -->
         <div id="modal2" class="modal">
           <div class="modal-content">
             <h4>Facilitator 1</h4>
@@ -38,19 +52,16 @@
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
           </div>
         </div>
-    
-        <!-- Filled in check box -->
+
         <input type="checkbox" class="filled-in" name="some-key1" id="checkbox1" /><label for="checkbox1"></label>
         </p>
-        
-    
+
+
     </li>
-    
+
     <li class="collection-item">Facilitator 2
-      <!-- Modal Trigger To View Profile -->
       <a class="btn btn-medium waves-effect waves-light btn modal-trigger" href="#modal3">Click To See Profile</a>
 
-      <!-- Modal Structure View Profile -->
       <div id="modal3" class="modal">
         <div class="modal-content">
           <h4>Facilitator 2</h4>
@@ -65,8 +76,7 @@
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
       </div>
-  
-      <!-- Filled in check box -->
+
       <input type="checkbox" class="filled-in" name="some-key2" id="checkbox2" /><label for="checkbox2"></label>
       </p>
     </li>
@@ -79,7 +89,6 @@
 </span>
 
 
-<!-- Select / deselect all checkbox -->
 <input type="checkbox" class="filled-in" id="checkbox0" data-check-pattern="[name^='some-key']" /><label for="checkbox0">Select All</label>
 <style>
     label {
@@ -89,12 +98,11 @@
 </style>
 
 
-<!-- Jump to visualization page !!!!!!!!!!!!!!!!!! NEED TO UPDATE THE LINK TO HANNAH & MAHA'S PAGE -->
 <p>
 <a class="btn btn-medium btn-register waves-effect waves-light" href="form.hbs" type="button" name="action">Click here to see visualization</a>
-</p>
+</p> -->
 
-
+ </div>
 <style type="text/css">
 
 label {
@@ -106,6 +114,10 @@ label {
    background-color:aliceblue;
    border: 1px solid green;
 }
+
+body{
+  background-color: grey;
+}
 </style>
 
 
@@ -116,15 +128,15 @@ label {
       var elems = document.querySelectorAll('.modal');
       var instances = M.Modal.init(elems, options);
     });
-  
+
     // Or with jQuery
-  
+
     $(document).ready(function(){
       // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
       $('.modal-trigger').leanModal();
     });
     // Or with jQuery
-  
+
       document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.datepicker');
       var instances = M.Datepicker.init(elems, options);
@@ -138,7 +150,7 @@ jQuery(function() {
 
 ;(function($) {
 	'use strict';
-	
+
 	$.fn.checkAll = function(options) {
 		return this.each(function() {
 			var mainCheckbox = $(this);
@@ -146,7 +158,7 @@ jQuery(function() {
 			var onChangeHandler = function(e) {
 				var $currentCheckbox = $(e.currentTarget);
 				var $subCheckboxes;
-				
+
 				if ($currentCheckbox.is(mainCheckbox)) {
 					$subCheckboxes = $(selector);
 					$subCheckboxes.prop('checked', mainCheckbox.prop('checked'));
@@ -155,11 +167,11 @@ jQuery(function() {
 					mainCheckbox.prop('checked', $subCheckboxes.filter(':checked').length === $subCheckboxes.length);
 				}
 			};
-			
+
 			$(document).on('change', 'input[type="checkbox"]', onChangeHandler);
 		});
 	};
 }(jQuery));
-  
-  
-    </script>  </div>
+
+
+    </script>

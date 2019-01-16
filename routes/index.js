@@ -6,15 +6,52 @@ var router = express.Router();
 var multer = require("multer");
 var bcrypt = require("bcrypt-nodejs");
 var LocalStrategy = require("passport-local").Strategy;
+var nodemailer = require("nodemailer");
+
+var smtpTransport = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: "mhendrickbu@gmail.com",
+    pass: process.env.PASS
+  }
+});
+
+var rand, mailOptions, host, link;
 
 // A HELPFUL GUIDE: https://mherman.org/blog/user-authentication-with-passport-dot-js/#add-routes
 //PLZ
-var createUser = function(newUser, callback) {
+var createUser = function(newUser, req, rand, callback) {
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(newUser.password, salt, null, function(err, hash) {
       newUser.password = hash;
       newUser.save(callback);
     });
+  });
+  host = req.get("host");
+  link =
+    "http://" +
+    req.get("host") +
+    "/verify?id=" +
+    rand +
+    "&name=" +
+    newUser.username;
+  mailOptions = {
+    to: "mhendric@bu.edu",
+    subject: "Please confirm your Email account",
+    html:
+      "Hello,<br> Please Click on the link to verify your email.<br><a href=" +
+      link +
+      ">Click here to verify</a>"
+  };
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response) {
+    if (error) {
+      console.log(error);
+      res.end("error");
+    } else {
+      console.log("Message sent: " + response.message);
+      res.end("sent");
+    }
   });
 };
 
@@ -108,7 +145,17 @@ passport.deserializeUser(function(id, done) {
 
 router.get("/", function(req, res) {
   //This is the home page
-  res.render("index");
+  if (req.user && req.user.valid && req.user.type.toLowerCase() == "admin") {
+    res.redirect("/administratorPage");
+  } else if (
+    req.user &&
+    req.user.valid &&
+    req.user.type.toLowerCase() == "facilitator"
+  ) {
+    res.redirect("/form");
+  } else {
+    res.render("index");
+  }
 });
 
 router.post(
@@ -146,14 +193,18 @@ router.post("/", function(req, res) {
       res.redirect("/");
     }
     var pass = req.body.registerPasswordFacilitator;
+    rand = Math.floor(Math.random() * 100 + 54);
+
     var newAccount = new accountSchema({
       firstName: first,
       lastName: last,
       username: email,
       password: pass,
-      type: "facilitator"
+      rand: rand,
+      valid: false,
+      type: "Facilitator"
     });
-    createUser(newAccount, function(err, user) {
+    createUser(newAccount, req, rand, function(err, user) {
       if (err) {
         console.log(err);
       } else {
@@ -175,14 +226,18 @@ router.post("/", function(req, res) {
       res.redirect("/");
     }
     var pass = req.body.registerPasswordAdministrator;
+    rand = Math.floor(Math.random() * 100 + 54);
+
     var newAccount = new accountSchema({
       firstName: first,
       lastName: last,
       username: email,
       password: pass,
-      type: "admin"
+      rand: rand,
+      valid: false,
+      type: "Admin"
     });
-    createUser(newAccount, function(err, user) {
+    createUser(newAccount, req, rand, function(err, user) {
       if (err) {
         console.log(err);
       } else {
@@ -196,8 +251,11 @@ router.post("/", function(req, res) {
 
 router.get("/form", function(req, res) {
   //This is the route to load form
-
-  res.render("form");
+  if (req.user && req.user.valid) {
+    res.render("form", { admin: req.user.type.toLowerCase() == "admin" });
+  } else {
+    res.redirect("/");
+  }
 });
 
 router.post("/form", function(req, res) {
@@ -266,7 +324,7 @@ router.post("/form", function(req, res) {
       console.log(res);
     }
   });
-  res.redirect("/");
+  res.redirect("/dataVisualizationPage");
 });
 
 router.get("/logout", function(req, res) {
@@ -277,11 +335,105 @@ router.get("/logout", function(req, res) {
 
 //For Cici's code
 router.get("/dataVisualizationPage", function(req, res) {
-  res.render("dataVisualizationPage");
+  if (req.user && req.user.valid) {
+    var data = [];
+    formSchema.find({}, function(err, forms) {
+      forms.forEach(function(form) {
+        data.push(form);
+      });
+      res.render("dataVisualizationPage", {
+        admin: req.user.type.toLowerCase() == "admin",
+        name: req.user.firstName,
+        data: data
+      });
+    });
+  } else {
+    res.redirect("/");
+  }
 });
 
 router.get("/administratorPage", function(req, res) {
-  res.render("administratorPage");
+  if (req.user && req.user.valid && req.user.type.toLowerCase() == "admin") {
+    var allAccounts = [];
+    accountSchema.find({}, function(err, users) {
+      users.forEach(function(user) {
+        allAccounts.push(user);
+      });
+
+      res.render("administratorPage", {
+        accounts: allAccounts,
+        user: req.user.firstName
+      });
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
+router.post("/adminEdit", function(req, res) {
+  var update = "";
+  if (req.body.editPos == "1") {
+    update = "Facilitator";
+  } else {
+    update = "Admin";
+  }
+  accountSchema.findOneAndUpdate(
+    { username: req.body.user },
+    { $set: { type: update } },
+    { new: true },
+    function(err, user) {
+      console.log(user);
+    }
+  );
+  res.redirect("/");
+});
+
+router.post("/adminDelete", function(req, res) {
+  accountSchema.deleteOne({ username: req.body.user }, function(err, user) {
+    console.log(user);
+  });
+  res.redirect("/");
+});
+
+router.get("/verify", function(req, res) {
+  host = req.get("host");
+  console.log(req.protocol + ":/" + req.get("host"));
+  console.log(req.query.name);
+  var newNum = 0;
+  accountSchema.findOne({ username: req.query.name }, function(err, user) {
+    if (err) {
+      res.redirect("/");
+    } else {
+      newNum = user.rand;
+    }
+    console.log(req.protocol + "://" + req.get("host"));
+    console.log("http://" + host);
+    if (req.protocol + "://" + req.get("host") == "http://" + host) {
+      console.log("Domain is matched. Information is from Authentic email");
+      console.log(req.query.id);
+      console.log(newNum);
+
+      if (req.query.id == newNum) {
+        console.log("email is verified");
+        accountSchema.findOneAndUpdate(
+          { username: req.query.name },
+          { $set: { valid: true } },
+          { new: true },
+          function(err, user) {
+            console.log(user);
+          }
+        );
+        res.end(
+          "<h1>Email " + req.query.name + " is been Successfully verified"
+        );
+      } else {
+        console.log("email is not verified");
+        res.end("<h1>Bad Request</h1>");
+      }
+    } else {
+      res.end("<h1>Request is from unknown source");
+    }
+  });
 });
 
 //This is just a sanity check to make sure things work
