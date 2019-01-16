@@ -88,10 +88,13 @@ $(document).ready(function () {
 
   $("#submitFacilitatorRegister").click(function(){
     $("#facilitatorRegister").submit();
+    alert("Check email/spam for verification link!");
   });
 
   $("#submitAdminRegister").click(function () {
     $("#adminRegister").submit();
+    alert("Check email/spam for verification link!");
+
   });
 
 });
@@ -153,7 +156,7 @@ $(document).ready(function () {
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="passwordAdmin" name="passwordAdmin" type="text" class="form-control">
+              <input id="passwordAdmin" name="passwordAdmin" type="password" class="form-control">
               <label for="passwordAdmin">Password</label>
             </div>
           </div>
@@ -181,7 +184,7 @@ $(document).ready(function () {
           <div class="row">
               <div class="row modal-form-row">
                 <div class="input-field col s12">
-                  <input id="passwordFacilitator" name="passwordFacilitator" type="text" class="form-control">
+                  <input id="passwordFacilitator" name="passwordFacilitator" type="password" class="form-control">
                   <label for="passwordFacilitator">Password</label>
                 </div>
               </div>
@@ -225,7 +228,7 @@ $(document).ready(function () {
       <div class="row">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input name="registerPasswordFacilitator" id="registerPasswordFacilitator" type="text" class="form-control">
+              <input name="registerPasswordFacilitator" id="registerPasswordFacilitator" type="password" class="form-control">
               <label for="registerPasswordFacilitator">Password</label>
             </div>
           </div>
@@ -233,7 +236,7 @@ $(document).ready(function () {
       <div class="row">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input name = "registerConfirmPasswordFacilitator" id="registerConfirmPasswordFacilitator" type="text" class="form-control">
+              <input name = "registerConfirmPasswordFacilitator" id="registerConfirmPasswordFacilitator" type="password" class="form-control">
               <label for="registerConfirmPasswordFacilitator">Confirm Password</label>
             </div>
           </div>
@@ -278,7 +281,7 @@ $(document).ready(function () {
       <div class="row">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input name="registerPasswordAdministrator" id="registerPasswordAdministrator" type="text" class="form-control">
+              <input name="registerPasswordAdministrator" id="registerPasswordAdministrator" type="password" class="form-control">
               <label for="registerPasswordAdministrator">Password</label>
             </div>
           </div>
@@ -286,7 +289,7 @@ $(document).ready(function () {
       <div class="row">
           <div class="row modal-form-row">
             <div class="input-field col s12">
-              <input name="registerConfirmPasswordAdministrator" id="registerConfirmPasswordAdministrator" type="text" class="form-control">
+              <input name="registerConfirmPasswordAdministrator" id="registerConfirmPasswordAdministrator" type="password" class="form-control">
               <label for="registerConfirmPasswordAdministrator">Confirm Password</label>
             </div>
           </div>

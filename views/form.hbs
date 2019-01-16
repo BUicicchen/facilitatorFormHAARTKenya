@@ -119,6 +119,10 @@
        if(current.includes("other_exploit") && $("#other_exploit_display").css("display") != "block"){
          $("#other_exploit_display").css("display", "block");
        }
+       else if(!(current.includes("other_exploit")) && $("#other_exploit_display").css("display") == "block"){
+         $("#other_exploit_box").val("");
+         $("#other_exploit_display").css("display", "none");
+       }
      });
 
      $("#source").click(function (){
@@ -141,11 +145,16 @@
        var current = $(this).val();
        if(current.includes("otherVictims") && $("#other_victims_display").css("display") != "block"){
          $("#other_victims_display").css("display", "block");
+       } else if (!(current.includes("otherVictims")) && $("#other_victims_display").css("display") == "block") {
+         $("#other_victims_display").val();
+         $("#other_victims_display").css("display", "none");
        }
      });
 
      $("#submitButton").click(function () {
+       submitting = true;
        $("#theForm").submit();
+       alert("Form saved!")
      });
 
    });
@@ -153,12 +162,30 @@
    </script>
 
      <body>
-      <nav>
+       <nav class="teal">
+        <div class="nav-wrapper">
+          <a class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            {{#if admin}}
+            <li><a href="/administratorPage">Administrator Page</a></li>
+            {{/if}}
+            <li><a href="/dataVisualizationPage">Data Visuals</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+  </nav>
+      <!-- <nav>
       <div class="nav-wrapper">
          <nav class="grey">
-            <a href="#" class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
-      </div>
-      </nav>
+            {{#if admin}}
+            <a href="/administratorPage">Administrator Page</a>
+            {{/if}}
+            <a href="/administratorPage">Data Visuals</a>
+            <a href="/logout" class="brand-logo right">Logout</a>
+          </nav>
+
+        </div>
+    </nav> -->
 
       <div class="section no-pad-bot" id="index-banner">
 
