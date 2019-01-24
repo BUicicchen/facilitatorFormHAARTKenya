@@ -200,7 +200,7 @@
     $(document).ready(function () {
 
 function workshopTypeGraph(){
-  var api = "http://localhost:3000/api/workshopTypeGraph";
+  var api = "http://haart.hack4impactbu.com/api/workshopTypeGraph";
 
   $.get(api, function (data, status) {
     var dataForTypesOfWorkshop = [{
@@ -217,7 +217,7 @@ function workshopTypeGraph(){
 }
 
 function targetGroupGraph(){
-  var api = "http://localhost:3000/api/targetGroupGraph";
+  var api = "http://haart.hack4impactbu.com/api/targetGroupGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -234,7 +234,7 @@ function targetGroupGraph(){
 }
 
 function ageGroupGraph(){
-  var api = "http://localhost:3000/api/ageGroupGraph";
+  var api = "http://haart.hack4impactbu.com/api/ageGroupGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -250,7 +250,7 @@ function ageGroupGraph(){
   });
 }
 function typesExploitGraph(){
-  var api = "http://localhost:3000/api/typesExploitGraph";
+  var api = "http://haart.hack4impactbu.com/api/typesExploitGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -267,7 +267,7 @@ function typesExploitGraph(){
 }
 
 function kenyaTraffickerGraph(){
-  var api = "http://localhost:3000/api/kenyaTraffickerGraph";
+  var api = "http://haart.hack4impactbu.com/api/kenyaTraffickerGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -283,7 +283,7 @@ function kenyaTraffickerGraph(){
   });
 }
 function forTraffickerGraph(){
-  var api = "http://localhost:3000/api/forTraffickerGraph";
+  var api = "http://haart.hack4impactbu.com/api/forTraffickerGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -300,7 +300,7 @@ function forTraffickerGraph(){
 }
 
 function victimsTraffickedGraph(){
-  var api = "http://localhost:3000/api/victimsTraffickedGraph";
+  var api = "http://haart.hack4impactbu.com/api/victimsTraffickedGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -317,7 +317,7 @@ function victimsTraffickedGraph(){
 }
 
 function biggestNeedGraph(){
-  var api = "http://localhost:3000/api/biggestNeedGraph";
+  var api = "http://haart.hack4impactbu.com/api/biggestNeedGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -340,7 +340,7 @@ function biggestNeedGraph(){
 //   return;
 // }
 function genderPieChart(){
-  var api = "http://localhost:3000/api/genderPieChart";
+  var api = "http://haart.hack4impactbu.com/api/genderPieChart";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -357,7 +357,7 @@ function genderPieChart(){
 }
 
 function typesTraffickingChart(){
-  var api = "http://localhost:3000/api/typesTraffickingChart";
+  var api = "http://haart.hack4impactbu.com/api/typesTraffickingChart";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -374,7 +374,7 @@ function typesTraffickingChart(){
 }
 
 function sourceDestinationGraph(){
-  var api = "http://localhost:3000/api/sourceDestinationGraph";
+  var api = "http://haart.hack4impactbu.com/api/sourceDestinationGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -391,7 +391,7 @@ function sourceDestinationGraph(){
 }
 
 function victimGenderGraph(){
-  var api = "http://localhost:3000/api/victimGenderGraph";
+  var api = "http://haart.hack4impactbu.com/api/victimGenderGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -408,7 +408,7 @@ function victimGenderGraph(){
 }
 
 function victimCategoryGraph(){
-  var api = "http://localhost:3000/api/victimCategoryGraph";
+  var api = "http://haart.hack4impactbu.com/api/victimCategoryGraph";
 
   $.get(api, function (data, status) {
     var data = [{
@@ -459,7 +459,7 @@ victimGenderGraph();
 </script>
   <script>
     function workshopMap(){
-        fetch("http://localhost:3000/api/workshopMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/workshopMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -522,7 +522,7 @@ victimGenderGraph();
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=workshopMap"></script>
   <script>
     function exploitationMap(){
-        fetch("http://localhost:3000/api/exploitationMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/exploitationMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -586,7 +586,7 @@ victimGenderGraph();
 
   <script>
     function traffickingMap(){
-        fetch("http://localhost:3000/api/traffickingMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/traffickingMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -649,7 +649,7 @@ victimGenderGraph();
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=traffickingMap"></script>
   <script>
     function kenyanTraffickersMap(){
-        fetch("http://localhost:3000/api/kenyanTraffickersMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/kenyanTraffickersMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -712,7 +712,7 @@ victimGenderGraph();
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=kenyanTraffickersMap"></script>
   <script>
     function foreignerTraffickersMap(){
-        fetch("http://localhost:3000/api/foreignerTraffickersMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/foreignerTraffickersMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -775,7 +775,7 @@ victimGenderGraph();
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=foreignerTraffickersMap"></script>
   <script>
     function genderVictimMap(){
-        fetch("http://localhost:3000/api/genderVictimMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/genderVictimMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -838,7 +838,7 @@ victimGenderGraph();
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=genderVictimMap"></script>
   <script>
     function categoryVictimMap(){
-        fetch("http://localhost:3000/api/categoryVictimMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/categoryVictimMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -903,7 +903,7 @@ victimGenderGraph();
 
   <script>
     function victimsTraffickedMap(){
-        fetch("http://localhost:3000/api/victimsTraffickedMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/victimsTraffickedMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
@@ -967,7 +967,7 @@ victimGenderGraph();
 
   <script>
     function biggestNeedMap(){
-        fetch("http://localhost:3000/api/biggestNeedMap").then(function(response) {
+        fetch("http://haart.hack4impactbu.com/api/biggestNeedMap").then(function(response) {
         return response.json();
       }).then(function(data) {
         var map;
