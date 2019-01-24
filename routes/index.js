@@ -19,7 +19,6 @@ var smtpTransport = nodemailer.createTransport({
 
 var rand, mailOptions, host, link;
 
-// A HELPFUL GUIDE: https://mherman.org/blog/user-authentication-with-passport-dot-js/#add-routes
 //PLZ
 var createUser = function(newUser, req, rand, callback) {
   bcrypt.genSalt(10, function(err, salt) {
@@ -37,7 +36,7 @@ var createUser = function(newUser, req, rand, callback) {
     "&name=" +
     newUser.username;
   mailOptions = {
-    to: "mhendric@bu.edu",
+    to: newUser.username,
     subject: "Please confirm your Email account",
     html:
       "Hello,<br> Please Click on the link to verify your email.<br><a href=" +
