@@ -714,6 +714,287 @@ router.get("/api/workshopMap", function(req, res) {
   });
 });
 
+router.get("/api/exploitationMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.types_exploitation &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        workshopTypes.push([
+          form.types_exploitation,
+          form.latitude,
+          form.longitude,
+          form.county,
+          form.town
+        ]);
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/traffickingMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.types_trafficking &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        workshopTypes.push([
+          form.types_trafficking,
+          form.latitude,
+          form.longitude,
+          form.county,
+          form.town
+        ]);
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/kenyanTraffickersMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.trafficking_type &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        var temp = form.trafficking_type;
+        if (temp.indexOf("Kenyan") !== -1) {
+          if (temp.indexOf(",") === -1) {
+            workshopTypes.push([
+              temp,
+              form.latitude,
+              form.longitude,
+              form.county,
+              form.town
+            ]);
+          } else {
+            temp = temp.split(",");
+            temp.forEach(function(item) {
+              if (item != "Kenyan") {
+                workshopTypes.push([
+                  item,
+                  form.latitude,
+                  form.longitude,
+                  form.county,
+                  form.town
+                ]);
+              }
+            });
+          }
+        }
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/foreignerTraffickersMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.trafficking_type &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        var temp = form.trafficking_type;
+        if (temp.indexOf("Foreigners") !== -1) {
+          if (temp.indexOf(",") === -1) {
+            workshopTypes.push([
+              temp,
+              form.latitude,
+              form.longitude,
+              form.county,
+              form.town
+            ]);
+          } else {
+            temp = temp.split(",");
+            temp.forEach(function(item) {
+              if (item != "Foreigners") {
+                workshopTypes.push([
+                  item,
+                  form.latitude,
+                  form.longitude,
+                  form.county,
+                  form.town
+                ]);
+              }
+            });
+          }
+        }
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/genderVictimMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.victim_type &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        if (form.victim_type.includes("Male")) {
+          workshopTypes.push([
+            "Male",
+            form.latitude,
+            form.longitude,
+            form.county,
+            form.town
+          ]);
+        }
+        if (form.victim_type.includes("Female")) {
+          workshopTypes.push([
+            "Female",
+            form.latitude,
+            form.longitude,
+            form.county,
+            form.town
+          ]);
+        }
+        if (form.victim_type.includes("Other")) {
+          workshopTypes.push([
+            "Other",
+            form.latitude,
+            form.longitude,
+            form.county,
+            form.town
+          ]);
+        }
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/categoryVictimMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.victim_type &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        var temp = form.victim_type;
+        temp = temp.replace("Male,", "");
+        temp = temp.replace("Female,", "");
+        temp = temp.split(",");
+        temp.forEach(function(item) {
+          workshopTypes.push([
+            item,
+            form.latitude,
+            form.longitude,
+            form.county,
+            form.town
+          ]);
+        });
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/victimsTraffickedMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.traffick_method &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        var temp = form.traffick_method;
+        if (temp.indexOf(",") === -1) {
+          workshopTypes.push([
+            temp,
+            form.latitude,
+            form.longitude,
+            form.county,
+            form.town
+          ]);
+        } else {
+          temp = temp.split(",");
+          temp.forEach(function(item) {
+            workshopTypes.push([
+              item,
+              form.latitude,
+              form.longitude,
+              form.county,
+              form.town
+            ]);
+          });
+        }
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+router.get("/api/biggestNeedMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.biggest_need &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        var temp = form.biggest_need;
+        if (temp.indexOf(",") === -1) {
+          workshopTypes.push([
+            temp,
+            form.latitude,
+            form.longitude,
+            form.county,
+            form.town
+          ]);
+        } else {
+          temp = temp.split(",");
+          temp.forEach(function(item) {
+            workshopTypes.push([
+              item,
+              form.latitude,
+              form.longitude,
+              form.county,
+              form.town
+            ]);
+          });
+        }
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
 // router.get("/api/categoryVictimGraph", function(req, res) {
 //   var workshopTypes = [];
 //   formSchema.find({}, function(err, forms) {

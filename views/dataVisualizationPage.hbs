@@ -146,6 +146,54 @@
       <!-- Plotly chart will be drawn inside this DIV -->
     </div>
     </div>
+    <div>
+    <h2>Exploitation</h2>
+    <div id="map2" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>Types of Trafficking</h2>
+    <div id="map3" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>Kenyan Traffickers</h2>
+    <div id="map4" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>Foreign Traffickers</h2>
+    <div id="map5" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>Gender of Victims</h2>
+    <div id="map6" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>Category of Victims</h2>
+    <div id="map7" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>How Victims are Trafficked</h2>
+    <div id="map8" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+    <div>
+    <h2>Biggest Needs</h2>
+    <div id="map9" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
 
   </div>
   <script>
@@ -411,7 +459,6 @@ victimGenderGraph();
 </script>
   <script>
     function workshopMap(){
-
         fetch("http://localhost:3000/api/workshopMap").then(function(response) {
         return response.json();
       }).then(function(data) {
@@ -425,44 +472,13 @@ victimGenderGraph();
         },
         zoom:6
     };
-
     // Display a map on the web page
     map = new google.maps.Map(document.getElementById("map1"), mapOptions);
     map.setTilt(50);
-
-        // 	for (let loc of locations) {
-        // 		console.log(loc)
-        // 	var x = loc[0]
-        // 	var y = loc[1]
-        //   	var marker = new google.maps.Marker({
-        // 	position: {lat: x, lng: y},
-        //     	    map: map,
-        //     	    title: 'Big Belly!'
-        //   	});
-        // }
-
-        // var outerCoords = [
-        // 	{lat: -72.3395180809189, lng: 41.6348179820952},
-        // 	{lat: -72.3395180809189, lng: 43.1319950773011},
-        // 	{lat: -69.9363189433254, lng: 43.1319950773011},
-        // 	{lat: -69.9363189433254, lng: 41.6348179820952},
-        // 	{lat: -72.3395180809189, lng: 41.6348179820952}
-        // ];
         // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
         map.data.addGeoJson(test);
-        // 	for (let loc of locations) {
-        // 		console.log(loc)
-        // 	var x = loc[0]
-        // 	var y = loc[1]
-        //   	var marker = new google.maps.Marker({
-        // 	position: {lat: x, lng: y},
-        //     	    map: map,
-        //     	    title: 'Big Belly!'
-        //   	});
-        // }
         var markers = [];
         var infoWindowContent = [];
-
         for(let loc of data.markers){
           markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
           infoWindowContent.push(['<div id="content">'+
@@ -476,7 +492,6 @@ victimGenderGraph();
         }
         console.log(markers);
         console.log(infoWindowContent);
-
         var infoWindow = new google.maps.InfoWindow(), marker, i;
 
   // Place each marker on the map
@@ -499,44 +514,520 @@ victimGenderGraph();
 
       // Center the map to fit all markers on the screen
   }
-
-        // map.data.setStyle(function(feature) {
-        //   var popdens = feature.getProperty('POP10_SQMI')
-        //   var county = feature.getProperty('COUNTY')
-        //   if (county == "Turkana") {
-        //     return {
-        //       fillColor: 'Gold',
-        //       fillOpacity: 0.5
-        //     }
-        //   } else if (popdens > 3771 && popdens <= 10349) {
-        //     return {
-        //       fillColor: 'Black',
-        //       fillOpacity: 0.5
-        //     }
-        //   } else if (popdens > 10349 && popdens <= 20440) {
-        //     return {
-        //       fillColor: 'Black',
-        //       fillOpacity: 0.5
-        //     }
-        //   } else if (popdens > 20440 && popdens <= 39317) {
-        //     return {
-        //       fillColor: 'Black',
-        //       fillOpacity: 0.5
-        //     }
-        //   } else if (popdens > 39317 && popdens <= 108044) {
-        //     return {
-        //       fillColor: 'DarkRed',
-        //       fillOpacity: 0.5
-        //     }
-        //   }
-
-
       }).catch(function(er) {
         console.log(er);
       });
       }
 </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0KTquKd7wINTzWP47ClmloJ4lR_aK-F0&callback=workshopMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=workshopMap"></script>
+  <script>
+    function exploitationMap(){
+        fetch("http://localhost:3000/api/exploitationMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=exploitationMap"></script>
+
+  <script>
+    function traffickingMap(){
+        fetch("http://localhost:3000/api/traffickingMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map3"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=traffickingMap"></script>
+  <script>
+    function kenyanTraffickersMap(){
+        fetch("http://localhost:3000/api/kenyanTraffickersMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map4"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=kenyanTraffickersMap"></script>
+  <script>
+    function foreignerTraffickersMap(){
+        fetch("http://localhost:3000/api/foreignerTraffickersMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map5"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=foreignerTraffickersMap"></script>
+  <script>
+    function genderVictimMap(){
+        fetch("http://localhost:3000/api/genderVictimMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map6"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=genderVictimMap"></script>
+  <script>
+    function categoryVictimMap(){
+        fetch("http://localhost:3000/api/categoryVictimMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map7"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=categoryVictimMap"></script>
+
+
+  <script>
+    function victimsTraffickedMap(){
+        fetch("http://localhost:3000/api/victimsTraffickedMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map8"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=victimsTraffickedMap"></script>
+
+  <script>
+    function biggestNeedMap(){
+        fetch("http://localhost:3000/api/biggestNeedMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map9"), mapOptions);
+    map.setTilt(50);
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        var markers = [];
+        var infoWindowContent = [];
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TsZwSkSs7ciL2hAiEsqYQLshaj0YZGM&callback=biggestNeedMap"></script>
 </body>
 <!-- <a class="btn btn-medium btn-register waves-effect waves-light" href="administratorPage" type="button" name="action">Manage Facilitators</a>
 <p><a class="btn btn-medium btn-register waves-effect waves-light" href="form" type="button" name="action">Fill Form</a></p>
