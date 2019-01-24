@@ -1,31 +1,543 @@
+<title>Data Visuals</title>
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script src="/js/sortable.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="/js/kenyan-counties.geojson"></script>
 
-      <title>The Materialize Example</title>
-      <meta name="viewport" content="width = device-width, initial-scale = 1">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-      </script>
+<style>
+  table {
+    table-layout: auto;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #BCBCBC;
+    word-wrap: break-word;
+  }
+</style>
+
+<body class="grey lighten-1">
+  <nav class="teal">
+    <div class="nav-wrapper">
+      <a class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        {{#if admin}}
+          <li><a href="/administratorPage">Administrator Page</a></li>
+        {{/if}}
+        <li><a href="/form">Form</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- <div class="card-panel grey lighten-1"> -->
+  <div class="container">
+
+    <h6>Welcome back {{name}}!</h6>
+    <h5>Data Visualization Page</h5>
+    <div class="row">
+      <table class="responsive-table centered sortable" id="allData">
+        <thead>
+          <tr>
+            <th>Date Submitted</th>
+            <th>Workshop Date</th>
+            <th>Workshop Venue</th>
+            <th>Workshop Type</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>County</th>
+            <th>Town</th>
+            <th>Age Group</th>
+            <th>Target Group(s)</th>
+            <th>Female Participants</th>
+            <th>Male Participants</th>
+            <th>Other Participants</th>
+            <th>Total Participants</th>
+            <th>Types of Exploitation</th>
+            <th>Types of Trafficking</th>
+            <th>Source / Destination / Both</th>
+            <th>Source / Destination Explanation</th>
+            <th>Who are the Traffickers</th>
+            <th>Who are the Victims?</th>
+            <th>How are the Victims trafficked?</th>
+            <th>What is the biggest need in addressing human trafficking?<th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each data}}
+            <tr>
+              <td>{{this.timeStamp}}</td>
+              <td>{{this.workshop_date}}</td>
+              <td>{{this.workshop_venue}}</td>
+              <td>{{this.workshop_type}}</td>
+              <td>{{this.latitude}}</td>
+              <td>{{this.longitude}}</td>
+              <td>{{this.county}}</td>
+              <td>{{this.town}}</td>
+              <td>{{this.agegroup}}</td>
+              <td>{{this.targetgroup}}</td>
+              <td>{{this.female_participants}}</td>
+              <td>{{this.male_participants}}</td>
+              <td>{{this.other_participants}}</td>
+              <td>{{this.total_participants}}</td>
+              <td>{{this.types_exploitation}}</td>
+              <td>{{this.types_trafficking}}</td>
+              <td>{{this.source}} {{this.destination}}</td>
+              <td>{{this.sourceExplanation}} {{this.destinationExplantion}}</td>
+              <td>{{this.trafficking_type}}</td>
+              <td>{{this.victim_type}}</td>
+              <td>{{this.traffick_method}}</td>
+              <td>{{this.biggest_need}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div id="myDiv">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv2">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv3">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv4">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv5">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv6">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv7">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv8">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv9">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv10">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv11">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv12">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id="myDiv13">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div>
+    <h2>Workshops</h2>
+    <div id="map1" style="height:100%">
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    </div>
+
+  </div>
+  <script>
+    $(document).ready(function () {
+
+function workshopTypeGraph(){
+  var api = "http://localhost:3000/api/workshopTypeGraph";
+
+  $.get(api, function (data, status) {
+    var dataForTypesOfWorkshop = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layoutForTypesOfWorkshop = {
+      title: 'Types of Workshop',
+    }
+
+    Plotly.newPlot('myDiv', dataForTypesOfWorkshop, layoutForTypesOfWorkshop, {showSendToCloud:true});
+  });
+}
+
+function targetGroupGraph(){
+  var api = "http://localhost:3000/api/targetGroupGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Target Groups',
+    }
+
+    Plotly.newPlot('myDiv2', data, layout, {showSendToCloud:true});
+  });
+}
+
+function ageGroupGraph(){
+  var api = "http://localhost:3000/api/ageGroupGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Age Groups',
+    }
+
+    Plotly.newPlot('myDiv3', data, layout, {showSendToCloud:true});
+  });
+}
+function typesExploitGraph(){
+  var api = "http://localhost:3000/api/typesExploitGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Types of Exploitation',
+    }
+
+    Plotly.newPlot('myDiv4', data, layout, {showSendToCloud:true});
+  });
+}
+
+function kenyaTraffickerGraph(){
+  var api = "http://localhost:3000/api/kenyaTraffickerGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Kenyan Traffickers',
+    }
+
+    Plotly.newPlot('myDiv5', data, layout, {showSendToCloud:true});
+  });
+}
+function forTraffickerGraph(){
+  var api = "http://localhost:3000/api/forTraffickerGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Foreigner Traffickers',
+    }
+
+    Plotly.newPlot('myDiv6', data, layout, {showSendToCloud:true});
+  });
+}
+
+function victimsTraffickedGraph(){
+  var api = "http://localhost:3000/api/victimsTraffickedGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'How Victims Are trafficked',
+    }
+
+    Plotly.newPlot('myDiv7', data, layout, {showSendToCloud:true});
+  });
+}
+
+function biggestNeedGraph(){
+  var api = "http://localhost:3000/api/biggestNeedGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Biggest Need',
+    }
+
+    Plotly.newPlot('myDiv8', data, layout, {showSendToCloud:true});
+  });
+}
+
+// function categoryVictimGraph() {
+//   return;
+// }
+// function genderVictimGraph(){
+//   return;
+// }
+function genderPieChart(){
+  var api = "http://localhost:3000/api/genderPieChart";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      values: data.occurences,
+      labels: data.types,
+      type: 'pie'
+    }];
+    var layout = {
+      title: 'Gender of Participants',
+    }
+
+    Plotly.newPlot('myDiv9', data, layout, {showSendToCloud:true});
+  });
+}
+
+function typesTraffickingChart(){
+  var api = "http://localhost:3000/api/typesTraffickingChart";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      values: data.occurences,
+      labels: data.types,
+      type: 'pie'
+    }];
+    var layout = {
+      title: 'Types of Trafficking',
+    }
+
+    Plotly.newPlot('myDiv10', data, layout, {showSendToCloud:true});
+  });
+}
+
+function sourceDestinationGraph(){
+  var api = "http://localhost:3000/api/sourceDestinationGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Source vs. Destination',
+    }
+
+    Plotly.newPlot('myDiv11', data, layout, {showSendToCloud:true});
+  });
+}
+
+function victimGenderGraph(){
+  var api = "http://localhost:3000/api/victimGenderGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Gender of Victims',
+    }
+
+    Plotly.newPlot('myDiv12', data, layout, {showSendToCloud:true});
+  });
+}
+
+function victimCategoryGraph(){
+  var api = "http://localhost:3000/api/victimCategoryGraph";
+
+  $.get(api, function (data, status) {
+    var data = [{
+      x: data.types,
+      y: data.occurences,
+      type: 'bar'
+    }];
+    var layout = {
+      title: 'Category of Victims',
+    }
+
+    Plotly.newPlot('myDiv13', data, layout, {showSendToCloud:true});
+  });
+}
+// var data = [{
+//   values: [19, 26, 55],
+//   labels: ['Residential', 'Non-Residential', 'Utility'],
+//   type: 'pie'
+// }];
+//
+// var layout = {
+//   title: "pie boi"
+// };
+//
+// Plotly.newPlot('myDiv5', data, layout);
+
+workshopTypeGraph();
+targetGroupGraph();
+ageGroupGraph();
+typesExploitGraph();
+kenyaTraffickerGraph();
+forTraffickerGraph();
+// categoryVictimGraph();
+// genderVictimGraph();
+victimsTraffickedGraph();
+biggestNeedGraph();
+genderPieChart();
+typesTraffickingChart();
+sourceDestinationGraph();
+victimCategoryGraph();
+victimGenderGraph();
 
 
-      <nav class="teal">
-       <div class="nav-wrapper">
-         <a class="brand-logo right"><img class="responsive-img" src="/images/HAART-2.png"></a>
-         <ul id="nav-mobile" class="left hide-on-med-and-down">
-           {{#if admin}}
-           <li><a href="/administratorPage">Administrator Page</a></li>
-           {{/if}}
-           <li><a href="/form">Form</a></li>
-           <li><a href="/logout">Logout</a></li>
-         </ul>
-       </div>
-      </nav>
 
-<div class="card-panel grey lighten-1">
-<h6>Welcome back {{name}}!</h6>
-<h5>Data Visualization Page</h5>
 
-<h7>{{data}}</h7>
+});
+
+</script>
+  <script>
+    function workshopMap(){
+
+        fetch("http://localhost:3000/api/workshopMap").then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap',
+        center: {
+          lat: -1.28333,
+          lng: 36.81667
+        },
+        zoom:6
+    };
+
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map1"), mapOptions);
+    map.setTilt(50);
+
+        // 	for (let loc of locations) {
+        // 		console.log(loc)
+        // 	var x = loc[0]
+        // 	var y = loc[1]
+        //   	var marker = new google.maps.Marker({
+        // 	position: {lat: x, lng: y},
+        //     	    map: map,
+        //     	    title: 'Big Belly!'
+        //   	});
+        // }
+
+        // var outerCoords = [
+        // 	{lat: -72.3395180809189, lng: 41.6348179820952},
+        // 	{lat: -72.3395180809189, lng: 43.1319950773011},
+        // 	{lat: -69.9363189433254, lng: 43.1319950773011},
+        // 	{lat: -69.9363189433254, lng: 41.6348179820952},
+        // 	{lat: -72.3395180809189, lng: 41.6348179820952}
+        // ];
+        // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+        map.data.addGeoJson(test);
+        // 	for (let loc of locations) {
+        // 		console.log(loc)
+        // 	var x = loc[0]
+        // 	var y = loc[1]
+        //   	var marker = new google.maps.Marker({
+        // 	position: {lat: x, lng: y},
+        //     	    map: map,
+        //     	    title: 'Big Belly!'
+        //   	});
+        // }
+        var markers = [];
+        var infoWindowContent = [];
+
+        for(let loc of data.markers){
+          markers.push([loc[0], parseFloat(loc[1]), parseFloat(loc[2])]);
+          infoWindowContent.push(['<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h5 id="firstHeading" class="firstHeading">'+ loc[4] + ', '+ loc[3] + '</h5>'+
+              '<div id="bodyContent">'+
+              '<h6><b>' + loc[0] + '</b></h6>'+
+              '</div>'+
+              '</div>'])
+        }
+        console.log(markers);
+        console.log(infoWindowContent);
+
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+  // Place each marker on the map
+  for( i = 0; i < markers.length; i++ ) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      bounds.extend(position);
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markers[i][0]
+      });
+
+      // Add info window to marker
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              infoWindow.setContent(infoWindowContent[i][0]);
+              infoWindow.open(map, marker);
+          }
+      })(marker, i));
+
+      // Center the map to fit all markers on the screen
+  }
+
+        // map.data.setStyle(function(feature) {
+        //   var popdens = feature.getProperty('POP10_SQMI')
+        //   var county = feature.getProperty('COUNTY')
+        //   if (county == "Turkana") {
+        //     return {
+        //       fillColor: 'Gold',
+        //       fillOpacity: 0.5
+        //     }
+        //   } else if (popdens > 3771 && popdens <= 10349) {
+        //     return {
+        //       fillColor: 'Black',
+        //       fillOpacity: 0.5
+        //     }
+        //   } else if (popdens > 10349 && popdens <= 20440) {
+        //     return {
+        //       fillColor: 'Black',
+        //       fillOpacity: 0.5
+        //     }
+        //   } else if (popdens > 20440 && popdens <= 39317) {
+        //     return {
+        //       fillColor: 'Black',
+        //       fillOpacity: 0.5
+        //     }
+        //   } else if (popdens > 39317 && popdens <= 108044) {
+        //     return {
+        //       fillColor: 'DarkRed',
+        //       fillOpacity: 0.5
+        //     }
+        //   }
+
+
+      }).catch(function(er) {
+        console.log(er);
+      });
+      }
+</script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0KTquKd7wINTzWP47ClmloJ4lR_aK-F0&callback=workshopMap"></script>
+</body>
 <!-- <a class="btn btn-medium btn-register waves-effect waves-light" href="administratorPage" type="button" name="action">Manage Facilitators</a>
 <p><a class="btn btn-medium btn-register waves-effect waves-light" href="form" type="button" name="action">Fill Form</a></p>
 
@@ -101,77 +613,74 @@
 <p>
 <a class="btn btn-medium btn-register waves-effect waves-light" href="form.hbs" type="button" name="action">Click here to see visualization</a>
 </p> -->
-
- </div>
 <style type="text/css">
+  label {
+    display: inline-block;
+    vertical-align: middle;
+  }
 
-label {
-  display:inline-block;
-  vertical-align:middle;
-}
-.label-content {
-   height:100px;
-   background-color:aliceblue;
-   border: 1px solid green;
-}
+  .label-content {
+    height: 100px;
+    background-color: aliceblue;
+    border: 1px solid green;
+  }
 
-body{
-  background-color: grey;
-}
+  body {
+    background-color: grey;
+  }
 </style>
 
 
 
-  <!-- Modal Initialization -->
-  <script language="JavaScript">
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.modal');
-      var instances = M.Modal.init(elems, options);
-    });
+<!-- Modal Initialization -->
+<script language="JavaScript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
 
-    // Or with jQuery
+  // Or with jQuery
 
-    $(document).ready(function(){
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal-trigger').leanModal();
-    });
-    // Or with jQuery
+  $(document).ready(function() {
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+  // Or with jQuery
 
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.datepicker');
-      var instances = M.Datepicker.init(elems, options);
-    });
-
-
-// CHECKBOX SELECT ALL / DESELECT ALL
-jQuery(function() {
-	jQuery('[data-check-pattern]').checkAll();
-});
-
-;(function($) {
-	'use strict';
-
-	$.fn.checkAll = function(options) {
-		return this.each(function() {
-			var mainCheckbox = $(this);
-			var selector = mainCheckbox.attr('data-check-pattern');
-			var onChangeHandler = function(e) {
-				var $currentCheckbox = $(e.currentTarget);
-				var $subCheckboxes;
-
-				if ($currentCheckbox.is(mainCheckbox)) {
-					$subCheckboxes = $(selector);
-					$subCheckboxes.prop('checked', mainCheckbox.prop('checked'));
-				} else if ($currentCheckbox.is(selector)) {
-					$subCheckboxes = $(selector);
-					mainCheckbox.prop('checked', $subCheckboxes.filter(':checked').length === $subCheckboxes.length);
-				}
-			};
-
-			$(document).on('change', 'input[type="checkbox"]', onChangeHandler);
-		});
-	};
-}(jQuery));
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
 
 
-    </script>
+  // CHECKBOX SELECT ALL / DESELECT ALL
+  jQuery(function() {
+    jQuery('[data-check-pattern]').checkAll();
+  });
+
+  ;
+  (function($) {
+    'use strict';
+
+    $.fn.checkAll = function(options) {
+      return this.each(function() {
+        var mainCheckbox = $(this);
+        var selector = mainCheckbox.attr('data-check-pattern');
+        var onChangeHandler = function(e) {
+          var $currentCheckbox = $(e.currentTarget);
+          var $subCheckboxes;
+
+          if ($currentCheckbox.is(mainCheckbox)) {
+            $subCheckboxes = $(selector);
+            $subCheckboxes.prop('checked', mainCheckbox.prop('checked'));
+          } else if ($currentCheckbox.is(selector)) {
+            $subCheckboxes = $(selector);
+            mainCheckbox.prop('checked', $subCheckboxes.filter(':checked').length === $subCheckboxes.length);
+          }
+        };
+
+        $(document).on('change', 'input[type="checkbox"]', onChangeHandler);
+      });
+    };
+  }(jQuery));
+</script>

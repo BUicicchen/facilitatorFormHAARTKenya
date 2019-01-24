@@ -165,7 +165,15 @@ router.post(
     failureRedirect: "/"
   }),
   function(req, res) {
-    res.redirect("/form");
+    accountSchema.findOneAndUpdate(
+      { username: req.body.user },
+      { $set: { lastLogged: new Date() } },
+      { new: true },
+      function(err, user) {
+        console.log(user);
+        res.redirect("/form");
+      }
+    );
   }
 );
 
@@ -175,7 +183,15 @@ router.post(
     failureRedirect: "/"
   }),
   function(req, res) {
-    res.redirect("/administratorPage");
+    accountSchema.findOneAndUpdate(
+      { username: req.body.user },
+      { $set: { lastLogged: new Date() } },
+      { new: true },
+      function(err, user) {
+        console.log(user);
+        res.redirect("/administratorPage");
+      }
+    );
   }
 );
 
@@ -236,7 +252,8 @@ router.post("/", function(req, res) {
       password: pass,
       rand: rand,
       valid: false,
-      type: "Admin"
+      type: "Admin",
+      lastLogged: new Date()
     });
     createUser(newAccount, req, rand, function(err, user) {
       if (err) {
@@ -261,36 +278,66 @@ router.get("/form", function(req, res) {
 
 router.post("/form", function(req, res) {
   //A post request for the form actually collect the data and store it in Mongo
-  var workshop_date = req.body.workshop_date; //convert to name
-  var workshop_venue = req.body.workshop_venue;
-  var workshop_type = req.body.workshop_type;
-  var fname = req.user.firstName;
-  var lname = req.user.lastName;
-  var town = req.body.town;
-  var county = req.body.county;
-  var agegroup = req.body.age_group;
+  var workshop_date = req.body.workshop_date; //always
+  var workshop_venue = req.body.workshop_venue; //always
+  var workshop_type = req.body.workshop_type; //always
+  var fname = req.user.firstName; //always
+  var lname = req.user.lastName; //always
+  var town = req.body.town; //always
+  var county = req.body.county; //always
+  var agegroup = req.body.age_group; //always
   var targetgroup = [
+    //Some but not all;
     req.body.womenGroup,
     req.body.churchGroup,
     req.body.firstResponders,
     req.body.children,
     req.body.communityGroup
   ];
-  var female_participants = req.body.female_participants;
-  var male_participants = req.body.male_participants;
-  var other_participants = req.body.other_participants;
-  var total_participants = req.body.total_participants;
-  var typesExploit = req.body.typesOfExploitation; //other
-  var types_trafficking = req.body.typesOfTrafficking;
-  var source = req.body.source;
-  var destination = req.body.destination;
-  var sourceExplanation = req.body.source_box;
-  var destinationExplantion = req.body.destination_box;
-  var trafficking_type = req.body.whoAreTheTraffickers;
-  var victim_type = req.body.whoAreTheVictims; //others
-  var method = req.body.howAreTheyTrafficked;
-  var bigNeed = req.body.biggestNeed;
-  var timeStamp = req.body.timeStamp;
+  targetgroup = targetgroup.filter(function(el) {
+    return el != null;
+  });
+  var female_participants = req.body.female_participants; //always
+  var male_participants = req.body.male_participants; //always
+  var other_participants = req.body.other_participants; //always
+  var total_participants = req.body.total_participants; //always
+  var typesExploit = req.body.typesOfExploitation; // TODO: Fix others
+  var other_exploit_box = req.body.other_exploit_box;
+  if (other_exploit_box) {
+    typesExploit = typesExploit + "," + other_exploit_box;
+    typesExploit = typesExploit.replace("other_exploit,", "");
+  }
+  var types_trafficking = req.body.typesOfTrafficking; //always
+  var source = req.body.source; //MAYBE
+  if (!source) {
+    source = "";
+  }
+  var destination = req.body.destination; //MAYBE
+  if (!destination) {
+    destination = "";
+  }
+  var sourceExplanation = req.body.source_box; //MAYBE
+  if (!sourceExplanation) {
+    sourceExplanation = "";
+  }
+  var destinationExplantion = req.body.destination_box; //MAYBE
+  if (!destinationExplantion) {
+    destinationExplantion = "";
+  }
+  var trafficking_type = req.body.whoAreTheTraffickers; //always
+  var victim_type =
+    req.body.whoAreTheVictims + otherVictimsHelper(req.body.other_victims_box); // TODO: Fix others
+  // var other_victims_box = req.body.other_victims_box;
+  // if (other_victims_box) {
+  //   victim_type = victim_type + "," + other_victims_box;
+  //   victim_type = victim_type.replace("otherVictims,", "");
+  // }
+  victim_type = victim_type.replace("otherVictims,", "");
+  var method = req.body.howAreTheyTrafficked; //always
+  var bigNeed = req.body.biggestNeed; //always
+  var timeStamp = req.body.timeStamp; //always
+  var lat = req.body.latitude;
+  var long = req.body.longitude;
   var form = {
     workshop_date: workshop_date,
     workshop_venue: workshop_venue, //each category represented as a number
@@ -315,8 +362,18 @@ router.post("/form", function(req, res) {
     victim_type: victim_type,
     traffick_method: method, //0 for Deception, 1 for coercion/force, 2 for abduction, 3 for abuse of power
     timeStamp: timeStamp,
-    biggest_need: bigNeed
+    biggest_need: bigNeed,
+    latitude: lat,
+    longitude: long
   };
+
+  function otherVictimsHelper(other) {
+    if (other) {
+      return ",Other: " + other;
+    } else {
+      return "";
+    }
+  }
 
   formSchema.create(form, function(err, res) {
     if (err) {
@@ -352,6 +409,328 @@ router.get("/dataVisualizationPage", function(req, res) {
     res.redirect("/");
   }
 });
+
+function foo(arr) {
+  var a = [],
+    b = [],
+    prev;
+
+  arr.sort();
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] !== prev) {
+      a.push(arr[i]);
+      b.push(1);
+    } else {
+      b[b.length - 1]++;
+    }
+    prev = arr[i];
+  }
+
+  return [a, b];
+}
+
+router.get("/api/workshopTypeGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.workshop_type) {
+        workshopTypes.push(form.workshop_type);
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/targetGroupGraph", function(req, res) {
+  var arr = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.targetgroup) {
+        arr.push(form.targetgroup);
+      }
+    });
+    arr = [].concat.apply([], arr);
+    arr = foo(arr);
+    res.json({ types: arr[0], occurences: arr[1] });
+  });
+});
+
+router.get("/api/ageGroupGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.agegroup) {
+        workshopTypes.push(form.agegroup);
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/typesExploitGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      var temp = form.types_exploitation;
+      if (temp) {
+        if (temp.indexOf(",") === -1) {
+          workshopTypes.push(temp);
+        } else {
+          temp = temp.split(",");
+          temp.forEach(function(item) {
+            workshopTypes.push(item);
+          });
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/kenyaTraffickerGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      var temp = form.trafficking_type;
+      if (temp) {
+        if (temp.indexOf("Kenyan") !== -1) {
+          if (temp.indexOf(",") === -1) {
+            workshopTypes.push(temp);
+          } else {
+            temp = temp.split(",");
+            temp.forEach(function(item) {
+              if (item != "Kenyan") {
+                workshopTypes.push(item);
+              }
+            });
+          }
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/forTraffickerGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      var temp = form.trafficking_type;
+      if (temp) {
+        if (temp.indexOf("Foreigners") !== -1) {
+          if (temp.indexOf(",") === -1) {
+            workshopTypes.push(temp);
+          } else {
+            temp = temp.split(",");
+            temp.forEach(function(item) {
+              if (item != "Foreigners") {
+                workshopTypes.push(item);
+              }
+            });
+          }
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+router.get("/api/victimsTraffickedGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      var temp = form.traffick_method;
+      if (temp) {
+        if (temp.indexOf(",") === -1) {
+          workshopTypes.push(temp);
+        } else {
+          temp = temp.split(",");
+          temp.forEach(function(item) {
+            workshopTypes.push(item);
+          });
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/biggestNeedGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      var temp = form.biggest_need;
+      if (temp) {
+        if (temp.indexOf(",") === -1) {
+          workshopTypes.push(temp);
+        } else {
+          temp = temp.split(",");
+          temp.forEach(function(item) {
+            workshopTypes.push(item);
+          });
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/genderPieChart", function(req, res) {
+  var male = 0;
+  var female = 0;
+  var other = 0;
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.male_participants && !isNaN(form.male_participants)) {
+        male = male + parseInt(form.male_participants);
+      }
+      if (form.female_participants && !isNaN(form.female_participants)) {
+        female = female + parseInt(form.female_participants);
+      }
+      if (form.other_participants && !isNaN(form.other_participants)) {
+        other = other + parseInt(form.other_participants);
+      }
+    });
+    res.json({
+      types: ["Male", "Female", "Others"],
+      occurences: [male, female, other]
+    });
+  });
+});
+
+router.get("/api/typesTraffickingChart", function(req, res) {
+  var internal = 0;
+  var cross = 0;
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.types_trafficking) {
+        var temp = form.types_trafficking;
+        temp = temp.split(",");
+        if (temp.length == 1) {
+          if (temp[0] == "Internal") {
+            internal = internal + 1;
+          } else {
+            cross = cross + 1;
+          }
+        } else {
+          internal = internal + 1;
+          cross = cross + 1;
+        }
+      }
+    });
+    res.json({
+      types: ["Internal", "Cross-Border"],
+      occurences: [internal, cross]
+    });
+  });
+});
+
+router.get("/api/sourceDestinationGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.source || form.destination) {
+        if (form.source) {
+          workshopTypes.push(form.source);
+        }
+        if (form.destination) {
+          workshopTypes.push(form.destination);
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/victimGenderGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.victim_type) {
+        console.log(form.victim_type);
+        if (form.victim_type.includes("Male")) {
+          workshopTypes.push("Male");
+        }
+        if (form.victim_type.includes("Female")) {
+          workshopTypes.push("Female");
+        }
+        if (form.victim_type.includes("Other")) {
+          workshopTypes.push("Other");
+        }
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/victimCategoryGraph", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (form.victim_type) {
+        var temp = form.victim_type;
+        temp = temp.replace("Male,", "");
+        temp = temp.replace("Female,", "");
+        temp = temp.split(",");
+        temp.forEach(function(item) {
+          workshopTypes.push(item);
+        });
+      }
+    });
+    workshopTypes = foo(workshopTypes);
+    res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+  });
+});
+
+router.get("/api/workshopMap", function(req, res) {
+  var workshopTypes = [];
+  formSchema.find({}, function(err, forms) {
+    forms.forEach(function(form) {
+      if (
+        form.workshop_type &&
+        form.latitude &&
+        form.longitude &&
+        form.county &&
+        form.town
+      ) {
+        workshopTypes.push([
+          form.workshop_type,
+          form.latitude,
+          form.longitude,
+          form.county,
+          form.town
+        ]);
+      }
+    });
+    res.json({ markers: workshopTypes });
+  });
+});
+
+// router.get("/api/categoryVictimGraph", function(req, res) {
+//   var workshopTypes = [];
+//   formSchema.find({}, function(err, forms) {
+//     forms.forEach(function(form) {
+//       var temp = form.victim_type;
+//       if (temp) {
+//         // temp = temp.split(",");
+//         // if(temp[0].includes("Boys") || temp[0].includes("Girls") || temp[0].includes("Adult Men") || temp[0].includes("Adult Women")
+//         // || temp[0].includes("Elderly") || temp[0].includes("Refuges / Foreigners") || temp[0].includes("Orphans / Disabled Persons") || temp[0].includes("LGBTQ+")){
+//         //   temp.splice(temp.indexOf("stringToRemoveFromArray"), 1);
+//         // }
+//
+//       }
+//     workshopTypes = foo(workshopTypes);
+//     res.json({ types: workshopTypes[0], occurences: workshopTypes[1] });
+//   });
+// });
 
 router.get("/administratorPage", function(req, res) {
   if (req.user && req.user.valid && req.user.type.toLowerCase() == "admin") {
@@ -390,10 +769,27 @@ router.post("/adminEdit", function(req, res) {
 });
 
 router.post("/adminDelete", function(req, res) {
-  accountSchema.deleteOne({ username: req.body.user }, function(err, user) {
-    console.log(user);
-  });
-  res.redirect("/");
+  if (req.body.disable) {
+    accountSchema.findOneAndUpdate(
+      { username: req.body.user },
+      { $set: { valid: false } },
+      { new: true },
+      function(err, user) {
+        console.log(user);
+        res.redirect("/");
+      }
+    );
+  } else {
+    accountSchema.findOneAndUpdate(
+      { username: req.body.user },
+      { $set: { valid: true } },
+      { new: true },
+      function(err, user) {
+        console.log(user);
+        res.redirect("/");
+      }
+    );
+  }
 });
 
 router.get("/verify", function(req, res) {

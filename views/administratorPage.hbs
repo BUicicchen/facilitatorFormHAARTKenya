@@ -58,6 +58,7 @@
         <p>Country:</p>
         <p>Join Date:</p> -->
                 <p>Position: {{this.type}}</p>
+                <p>Last Logged In: {{this.lastLogged}}</p>
                 <!-- <p>Work Experience:</p> -->
               </div>
               <div class="modal-footer">
@@ -161,22 +162,41 @@
             </div>
 
             <!-- Modal Trigger To Delete -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal4{{firstName}}{{lastName}}{{type}}">Delete</a>
-
-            <!-- Modal Structure View Profile -->
+            {{#if this.valid}}
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal4{{firstName}}{{lastName}}{{type}}">Disable Account</a>
             <div id="modal4{{firstName}}{{lastName}}{{type}}" class="modal">
               <form action="/adminDelete" method="post" id="deletePerson" enctype='application/x-www-form-urlencoded'>
               <div class="modal-content">
                 <h4>{{this.firstName}} {{this.lastName}}</h4>
-                <p>Are you sure you want to delete user?</p>
+                <p>Are you sure you want to disable this user?</p>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
                 <button class="modal-close waves-effect waves-green btn-flat" id="deleteButton">Yes</button>
                 <input style="display:none"id="user" name="user" value="{{this.username}}"></input>
+                <input style="display:none"id="disable" name="disable" value="disable"></input>
               </div>
             </form>
             </div>
+            {{else}}
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal4{{firstName}}{{lastName}}{{type}}">Enable Account</a>
+            <div id="modal4{{firstName}}{{lastName}}{{type}}" class="modal">
+              <form action="/adminDelete" method="post" id="deletePerson" enctype='application/x-www-form-urlencoded'>
+              <div class="modal-content">
+                <h4>{{this.firstName}} {{this.lastName}}</h4>
+                <p>Are you sure you want to enable this user?</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+                <button class="modal-close waves-effect waves-green btn-flat" id="deleteButton">Yes</button>
+                <input style="display:none"id="user" name="user" value="{{this.username}}"></input>
+                <input style="display:none"id="enable" name="enable" value="enable"></input>
+
+              </div>
+            </form>
+            </div>
+            {{/if}}
+            <!-- Modal Structure View Profile -->
 
           </li>
         {{/each}}

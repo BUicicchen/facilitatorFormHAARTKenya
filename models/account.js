@@ -11,7 +11,8 @@ var Account = new Schema({
   password: String,
   valid: Boolean,
   rand: Number,
-  type: String
+  type: String,
+  lastLogged: Date
   //Change these around and add more fields that you may need for an account here!!
 });
 

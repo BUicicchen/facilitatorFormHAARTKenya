@@ -44,7 +44,9 @@ var formschema = new Schema({
   // victim-lgbtq: Boolean,
   traffick_method: String, //0 for Deception, 1 for coercion/force, 2 for abduction, 3 for abuse of power
   timeStamp: Date,
-  biggest_need: String // 0:lack of awareness, 1:corruption, 2:lack of services for victims, 3:shame/stigmatization  lastName: String
+  biggest_need: String,
+  latitude: String,
+  longitude: String // 0:lack of awareness, 1:corruption, 2:lack of services for victims, 3:shame/stigmatization  lastName: String
   //Change these around and add more fields that you may need for an account here!!
 });
 

@@ -200,7 +200,7 @@
             </div>
             <div class="row">
                <div class="input-field">
-                  <input placeholder="Worskop Venue" id="workshop_venue" type="text" class="validate" required >
+                  <input placeholder="Worskop Venue" name="workshop_venue" id="workshop_venue" type="text" class="validate" required >
                   <label for="workshop_venue">Workshop Venue</label>
                </div>
             </div>
@@ -209,19 +209,19 @@
                <div class="input-field col s12">
                   <select class="browser-default" name="workshop_type" required>
                      <option disabled="disabled" selected="selected">Workshop type</option>
-                     <option value="0">Grassroots</option>
-                     <option value="1">Child trafficking</option>
-                     <option value="2">First responder</option>
-                     <option value="3">Safe migration</option>
-                     <option value="4">Young@HAART</option>
+                     <option value="Grassroots">Grassroots</option>
+                     <option value="Child trafficking">Child trafficking</option>
+                     <option value="First responder">First responder</option>
+                     <option value="Safe migration">Safe migration</option>
+                     <option value="Young@HAART">Young@HAART</option>
                   </select>
                </div>
             </div>
 
             <div class = "row">
               <label> Please enter Latitude, Longitude</div>
-                <input placeholder="Latitude" id="latitude" type="text">
-                <input placeholder="Longitude" id="longitude" type="text">
+                <input placeholder="Latitude" name = "latitude" id="latitude" type="text">
+                <input placeholder="Longitude" name = "longitude" id="longitude" type="text">
             </div>
             <div class="row">
                <label>Please enter County</label>
@@ -236,10 +236,10 @@
                <div class="input-field col s12">
                   <select class="browser-default" required name ="age_group">
                      <option disabled="disabled" selected="selected">Age group</option>
-                     <option value="0">Below 18</option>
-                     <option value="1">18-35</option>
-                     <option value="2">36-55</option>
-                     <option value="3">56+</option>
+                     <option value="Below 18">Below 18</option>
+                     <option value="18-35">18-35</option>
+                     <option value="36-55">36-55</option>
+                     <option value="56+">56+</option>
                   </select>
                </div>
             </div>
@@ -248,31 +248,31 @@
                 <div class="input-field col s12">
                   <p>
                     <label>
-                      <input type="checkbox" name="womenGroup" value="womenGroup" />
+                      <input type="checkbox" name="womenGroup" value="Women's Group" />
                       <span>Women's Group</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" name="churchGroup" value="churchGroup" />
+                      <input type="checkbox" name="churchGroup" value="Church Group" />
                       <span>Church Group</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" name="firstResponders" value="firstResponders" />
+                      <input type="checkbox" name="firstResponders" value="First Responders" />
                       <span>First Responders</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" name="children" value="children" />
+                      <input type="checkbox" name="children" value="Children" />
                       <span>Children</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" name="communityGroup" value="communityGroup" />
+                      <input type="checkbox" name="communityGroup" value="Community Group" />
                       <span>Community Group</span>
                     </label>
                   </p>
@@ -306,20 +306,20 @@
                <label>Types of Exploitation (Command + click for mutiple)</label>
                <div class="input-field col s12">
                   <select class="browser-default" name="typesOfExploitation" id="typesOfExploitation" multiple size="8" style="height: 100%;">
-                    <option value="childLabor">Child Labor</option>
-                    <option value="sexualExploitation">Sexual Exploitation</option>
-                    <option value="organRemoval">Organ Removal</option>
-                    <option value="forcedAdultMarriages">Forced Adult Marriages</option>
-                    <option value="childMarriages">Child Marriages</option>
-                    <option value="forcedLabor">Forced Labor</option>
-                    <option value="beggin">Begging</option>
+                    <option value="Child Labor">Child Labor</option>
+                    <option value="Sexual Exploitation">Sexual Exploitation</option>
+                    <option value="Organ Removal">Organ Removal</option>
+                    <option value="Forced Adult Marriages">Forced Adult Marriages</option>
+                    <option value="Child Marriages">Child Marriages</option>
+                    <option value="Forced Labor">Forced Labor</option>
+                    <option value="Begging">Begging</option>
                     <option value="other_exploit">Other</option>
                   </select>
                </div>
             </div>
             <div class="row">
                <div class="input-field" id = "other_exploit_display" style="display: none">
-                  <input placeholder="Other:" id="other_exploit_box" type="text">
+                  <input placeholder="Other:" id="other_exploit_box" name ="other_exploit_box" type="text">
                   <label for="other_exploit_box">Other Exploit</label>
                </div>
             </div>
@@ -327,8 +327,8 @@
                <label>Types of Trafficking (Command + click for mutiple)</label>
                <div class="input-field col s12">
                   <select class="browser-default" name="typesOfTrafficking" id="typesOfTrafficking" multiple size="3" style="height: 100%;">
-                    <option value="internal">Internal</option>
-                    <option value="crossBorder">Cross-Border</option>
+                    <option value="Internal">Internal</option>
+                    <option value="Cross-Border">Cross-Border</option>
                   </select>
                </div>
             </div>
@@ -337,13 +337,13 @@
                 <div class="input-field col s12">
                   <p>
                      <label>
-                     <input type="checkbox" name="source" id="source" value="source"/>
+                     <input type="checkbox" name="source" id="source" value="Source"/>
                      <span>Source</span>
                      </label>
                   </p>
                   <p>
                      <label>
-                     <input type="checkbox" name="destination" id = "destination" value="destination"/>
+                     <input type="checkbox" name="destination" id = "Destination" value="Destination"/>
                      <span>Destination</span>
                      </label>
                   </p>
@@ -365,12 +365,12 @@
                    <label>Who are the Trafficker's? (Command + click for mutiple)</label>
                    <div class="input-field col s12">
                       <select class="browser-default" name="whoAreTheTraffickers" id="whoAreTheTraffickers" multiple size="8" style="height: 100%;">
-                        <option value="kenyan">Kenyan</option>
-                        <option value="foreigners">Foreigners</option>
-                        <option value="jobAgents">Job Agents</option>
-                        <option value="relativesOfVictims">Relatives of the Victims</option>
-                        <option value="strangers">Strangers</option>
-                        <option value="criminalGroups">Criminal Groups</option>
+                        <option value="Kenyan">Kenyan</option>
+                        <option value="Foreigners">Foreigners</option>
+                        <option value="Job Agents">Job Agents</option>
+                        <option value="Relatives of the Victims">Relatives of the Victims</option>
+                        <option value="Strangers">Strangers</option>
+                        <option value="Criminal Groups">Criminal Groups</option>
                       </select>
                    </div>
                 </div>
@@ -378,26 +378,26 @@
                    <label>Who are the Victims's? (Command + click for mutiple)</label>
                    <div class="input-field col s12">
                       <select class="browser-default" name="whoAreTheVictims" id="whoAreTheVictims" multiple size="16" style="height: 100%;">
-                        <option value="boys">Boys</option>
-                        <option value="girls">Girls</option>
-                        <option value="adultMen">Adult Men</option>
-                        <option value="adultWomen">Adult Women</option>
-                        <option value="refugesForeigners">Refuges / Foreigners</option>
-                        <option value="orphansDisabled">Orphans / Disababled Persons</option>
-                        <option value="lgbtq">LGBTQ+</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Boys">Boys</option>
+                        <option value="Girls">Girls</option>
+                        <option value="Adult Men">Adult Men</option>
+                        <option value="Adult Women">Adult Women</option>
+                        <option value="Refuges / Foreigners">Refuges / Foreigners</option>
+                        <option value="Orphans / Disababled Persons">Orphans / Disababled Persons</option>
+                        <option value="LGBTQ+">LGBTQ+</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                         <option value="otherVictims">Other</option>
-                        <option value="strangers">Adult</option>
-                        <option value="childVictim">Child</option>
-                        <option value="rich">Rich</option>
-                        <option value="poor">Poor</option>
+                        <option value="Adult">Adult</option>
+                        <option value="Child">Child</option>
+                        <option value="Rich">Rich</option>
+                        <option value="Poor">Poor</option>
                       </select>
                    </div>
                 </div>
                 <div class="row">
                    <div class="input-field" id = "other_victims_display" style="display: none">
-                      <input placeholder="Other:" id="other_victims_box" type="text">
+                      <input placeholder="Other:" id="other_victims_box" name = "other_victims_box" type="text">
                       <label for="other_victims_box">Other Victims:</label>
                    </div>
                 </div>
@@ -405,10 +405,10 @@
                    <label>How are the Victims trafficked? (Command + click for mutiple)</label>
                    <div class="input-field col s12">
                       <select class="browser-default" name="howAreTheyTrafficked" id="howAreTheyTrafficked" multiple size="5" style="height: 100%;">
-                        <option value="deception">Deception</option>
-                        <option value="coercionForce">Coercion / Force</option>
-                        <option value="abduction">Abduction</option>
-                        <option value="abuseOfPower">Abuse of Power</option>
+                        <option value="Deception">Deception</option>
+                        <option value="Coercion / Force">Coercion / Force</option>
+                        <option value="Abduction">Abduction</option>
+                        <option value="Abuse of Power">Abuse of Power</option>
                       </select>
                    </div>
                 </div>
@@ -416,10 +416,10 @@
                      <label>What is the biggest need in addressing Human Trafficking</label>
                      <div class="input-field col s12">
                         <select class="browser-default" name="biggestNeed" id="biggestNeed">
-                          <option value="lackOfAwareness">Lack of Awareness</option>
-                          <option value="corruption">Corruption</option>
-                          <option value="lackOfServicesForVictims">Lack of Services for Victims</option>
-                          <option value="shameAndStigmatization">Shame and Stigmatization</option>
+                          <option value="Lack of Awareness">Lack of Awareness</option>
+                          <option value="Corruption">Corruption</option>
+                          <option value="Lack of Services for Victims">Lack of Services for Victims</option>
+                          <option value="Shame and Stigmatization">Shame and Stigmatization</option>
                         </select>
                      </div>
                    </div>
